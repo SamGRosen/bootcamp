@@ -1,0 +1,168 @@
+---
+title: "Incredibly Fast Rundown of Machine Learning and `scikit-learn`"
+subtitle: "With notes from [*Cynthia Rudin*](https://users.cs.duke.edu/~cynthia/teaching.html)"
+author:
+  - Sam Rosen
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: theme.scss
+execute:
+  echo: true
+  eval: true
+---
+
+## Outline
+
+* What is Machine Learning?
+* Types of Machine Learning
+  * Supervised
+    * Classification
+    * Regression
+  * Unsupervised
+    * Clustering
+    * Data Mining
+    * Dimensionality Reduction
+* Typical Machine Learning Pipeline w/ scikit-learn
+* Pitfalls
+* Resources
+
+## What is Machine Learning????
+
+::: {.r-stack}
+![](images/0.png){.fragment}
+
+![](images/1.png){.fragment}
+
+![](images/2.png){.fragment}
+
+![](images/3.png){.fragment}
+
+![](images/4.png){.fragment}
+
+![](images/5.png){.fragment}
+
+![](images/6.png){.fragment}
+
+![](images/7.png){.fragment}
+
+![](images/8.png){.fragment}
+
+![](images/9.png){.fragment}
+![](images/10.png){.fragment}
+
+![](images/11.png){.fragment}
+
+![](images/12.png){.fragment}
+
+![](images/13.png){.fragment}
+:::
+
+
+
+
+
+# Supervised Learning
+
+## Regression
+
+## Classification
+
+
+
+# Pipeline
+
+## Data Ingest
+
+## Data Cleaning
+
+## Exploratory Data Analysis
+
+## Feature Engineering
+
+## Training and Cross-validation
+
+## Evaluate 
+
+## Deployment
+
+## Adjustment
+
+# Unsupervised Learning
+
+## Clustering
+
+## Data Mining
+
+## Dimensionality Reduction
+
+:::footer
+https://users.cs.duke.edu/~cynthia/CourseNotes/DataVizLectureNotes.pdf
+:::
+
+# The Pipeline
+
+## Input, Output
+
+# Pitfalls
+
+:::footer
+See [Lones 2023](https://arxiv.org/abs/2108.02497)
+:::
+
+## Overfitting {.smaller}
+
+* "All models are wrong, some are useful" - George Box
+* It's important for your models to generalize, and not just memorize the training data set
+
+![](images/overfit1.png){.absolute bottom=50 right=10 width="400" height="300"}
+
+![](images/overfit2.png){.absolute bottom=150 left=10 width="600" height="150"}
+
+
+:::footer
+See Intuition for the Algorithms of Machine Learning [Chapter 1.1](https://users.cs.duke.edu/~cynthia/CourseNotes/ConceptsOfLearningNotes.pdf)
+:::
+
+## Bad Data / Fitting Artifacts {.smaller}
+
+* "If you torture data long enough, it will confess" - Ronald Coase
+* You may need *lots* of data to produce a good model particularly if your data is noisy
+* Sometimes machine learning algorithms can give arbitrary results if an algorithm used is not the right fit for the data
+  * See applying [t-SNE](https://stats.stackexchange.com/questions/263539/clustering-on-the-output-of-t-sne/264647#264647) (Dimensionality Reduction for Data Visualization) to Normal data
+
+![](images/clustering.png)
+
+
+## Training Issues
+
+* [Vanishing Gradient](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) is common with Neural Networks
+* Optimization can be hard
+
+![](images/sparse_ridge.png)
+* Too many hyperparameters
+
+## Feature Correlation / Colinearity
+
+
+## Curse of Dimensionality
+
+https://cookieblues.github.io/guides/2021/03/11/bsmalea-notes-1b/
+
+## Learning
+
+If you want a more in-depth dive of this material, see these textbooks, but focusing on your courses is plenty sufficient.
+
+* [An Introduction to Statistical Learning](https://www.statlearning.com/): Friendlier introduction with plenty of code examples in `R`
+
+* [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/): More theoretical introduction
+
+* [Intuition for the Algorithms of Machine Learning](https://users.cs.duke.edu/~cynthia/teaching.html): CS671 Textbook
+
+* [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/): Infinitely useful textbook about optimization
+
+
+

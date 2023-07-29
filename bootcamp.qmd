@@ -1,0 +1,989 @@
+---
+title: "Internship Prep"
+subtitle: "Concepts and Examples with Python"
+author:
+  - Sam Rosen
+format:
+  revealjs: 
+    slide-number: true
+    incremental: true
+    chalkboard: 
+      buttons: true
+    preview-links: auto
+    theme: theme.scss
+---
+
+## Outline
+
+* Some Advice
+* Internship Types and Examples
+* Internship Process
+* Example Case Studies
+* Big $O$ Notation with Examples
+* Python Data Structures
+* 4 Programming Challenges, Live Coded
+* Study Tips
+ 
+## My Personal Advice[^1] for Internships {.smaller}
+
+[^1]: No guarantees!
+
+### Do's
+
+-   Cast a wide net
+    -   For many internships the degree you are studying does not matter as long as it falls under a STEM discipline
+    -   Data Science is a broad field
+    -   You can apply to Software Engineering internships if they have a statistical responsibility
+-   Be interpersonal and interested
+    -   Start with your interests, then go to job boards
+    -   It is hard to fake interest in a field unless you are an actor
+    -   Ask questions about the job and show you are happy to learn
+
+## My Personal Advice[^2] for Internships {.smaller}
+
+[^2]: No guarantees!
+
+### Don'ts
+
+-   Do not apply on job board websites if possible
+    -   Go to the company website directly to apply
+-   Do not be upset by rejection
+    -   You do not need an internship to be successful in your career or this program
+    -   The current job market is volatile
+    -   If you fail an interview, ask questions anyways
+-   Do not do an unpaid internship
+    -   Your time is valuable
+    -   It is questionable what [level of responsibility](https://www.dol.gov/agencies/whd/fact-sheets/71-flsa-internships) or commitment they will give you if they will not pay you
+    -   Do paid summer research instead (look early!)
+
+## Types of Interships
+
+![](images/internship_chart.png)
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship1.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship2.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship3.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship4.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship5.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship6.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship7.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship8.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship9.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## Some Example Listings
+
+::: columns
+::: {.column width="55%"}
+![](images/internship10.png)
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="44%"}
+![](images/internship_chart_no_key.png)
+:::
+:::
+
+## The Process
+
+![](internship-steps.png)
+
+## Case Studies {.smaller}
+
+-   If an internship will have a heavy statistics, machine learning, or creativity component, your technical interview may be a case study.
+-   A case study is a very open ended scenario with a specific goal in mind.
+-   It is important to ask questions about clarifications and assumptions for the problem
+-   You should be clear but critical of your own solution
+-   We will do a couple examples here but will not go too in depth because...
+    -   You will learn more about the necessary technical details in your courses
+    -   We are here to focus on Python
+
+## Example Case Study 1 {.smaller}
+
+An online retailer has about 10 million products in their catalog. However, they estimate about 10 percent of these are duplicate listings that they would like to remove. How would you do this?
+
+#### Questions / Assumptions
+
+-   What are the features of each product? Are they always accurate?
+-   What counts as different? What if there are two identical products except for color?
+-   What are the consequences for failing to find a duplicate? What about if we falsely assign a duplicate?
+
+#### Some ideas
+
+-   Using a clustering method to split the data into a clusters for examination
+-   Building a binary classifier that detects if two items are similar
+-   Add a report button to products, reward users for finding a duplicate
+
+## Example Case Study 2 {.smaller}
+
+A fast food restaurant wants to determine which factors lead to the longest wait times. You have access to a years worth of high quality camera footage in their restaurant from many angles. How would you solve this problem?
+
+#### Questions / Assumptions
+
+-   Is the company willing to pay for a machine learning model to detect people in pictures?
+-   What factors are they talking about? Weather? Time of day? Number of workers?
+
+#### Some ideas
+
+-   Finding a good camera angle of the line and using median pixel filtering to find people
+-   Building a computer vision model to track people
+
+Bonus: They also want to determine which factors make it more likely for a customer to **leave** the line and not come back.
+
+## Coding Challenges {.smaller}
+
+-   If your internship has a heavy focus on programming or engineering, you may have a programming challenge to show an ability to either think under pressure, or write a simple program.
+-   Unlike case studies there are usually 1 or 2 **best** answers.
+-   An answer can be *correct* but too slow to be accepted.
+-   How fast your program runs is an important consideration. This is described with big $O$ notation.
+-   Algorithms and data structures are the basis of these problems. You do not need to know everything about them, but the more you know the likelier you are to pass.
+-   We will focus on these to also help learn Python today.
+
+## Big $O$ Notation (TP App B.1) {.smaller}
+
+-   If $f(x) = O(g(x))$ then $$\lim_{x\to\infty} \frac{f(x)}{g(x)} < \infty$$
+-   If $f(x) = \Omega(g(x))$ then $$\lim_{x\to\infty} \frac{f(x)}{g(x)} > 0$$
+-   If $f(x) = O(g(x))$ and $f(x) = \Omega(g(x))$ then $f(x) = \Theta(g(x))$
+
+## Big $O$ Examples (TP App B.1) {.smallest}
+
+| Notation      | Name        | Examples                                                                                                      |
+|------------|------------|-------------------------------------------------|
+| $O(1)$        | Constant    | $$100 = O(1),\\ 1 = O(x) $$                                                                 |
+| $O(\log x)$   | Logarithmic | $$2 \log(x^2) = \Theta(\log x),\\ \frac{1}{10^{10}} \log(x) = O(\log x),\\ \log(\log(x)) = O(\log(x))$$ |
+| $O(x)$        | Linear      | $$20x + 10 = \Theta(x),\\ \log(x) = O(x)$$                                                                  |
+| $O(x \log x)$ | Loglinear   | $$x \log(x^3) = \Theta(x\log x), \\ x \log x = \Omega(\log x)$$                                              |
+| $O(x^2)$      | Quadratic   | $$x^2 + 1000x = \Theta(x^2)$$                                                                                  |
+| $O(2^x)$      | Exponential | $$x^{1000} = O(2^x), \\ 2^x = O(n!)$$                                       |
+
+## Examples for Basic Programs  (TP App B.2){.smaller}
+
+* What is the runtime and space complexity to find the sum of a list of integers of length $n$?
+
+* What is the runtime and space complexity to find all the cumulative sums of a list of integers of length $n$?
+
+* What is the runtime and space complexity to find the count of occurrences of each number in a list of length $n$?
+
+* What is the runtime and space complexity to determine if a word is in the English dictionary?
+
+## Examples with Some Code 1
+
+```{python}
+#| echo: true
+#| eval: false
+
+def mystery(nums):
+  more_nums = []
+  count = 0
+  for num in nums:
+    for other_num in nums:
+      if num * other_num in more_nums:
+        count += 1
+      else:
+        more_nums.append(num * other_num)
+  return more_nums
+
+```
+
+## Examples with Some Code 2
+
+```{python}
+#| echo: true
+#| eval: false
+
+def mystery(nums):
+  more_nums = set()
+  count = 0
+  for num in nums:
+    for other_num in nums:
+      if num * other_num in more_nums:
+        count += 1
+      else:
+        more_nums.append(num * other_num)
+  return more_nums
+
+```
+
+## Examples with Some Code 3
+
+```{python}
+#| echo: true
+#| eval: false
+
+def mystery(number):
+  count = 0
+  while number > 0:
+    digit = number % 10
+    if digit == 1:
+      count += 1
+    number = number // 10
+  return count
+
+```
+
+## Examples with Some Code 4, **Think Python Exercise 10.12** {.smallerr}
+
+::: columns
+::: {.column width="40%"}
+Two words "interlock" if taking alternative letters from each forms a new word. For example, "shoe" and "cold" interlock to form "schooled". Given a list of words, find all pairs of words that interlock. If $n$ is the number of words and $k$ is the maximum length of a word, what are the complexities?
+:::
+
+::: {.column width="60%"}
+```{python}
+#| echo: true
+#| eval: false
+
+# Assume word 1 is the longer of the words
+def interlock(word1, word2): 
+  size_diff = len(word1) - len(word2)
+  if size_diff not in (0, 1):
+    return ""
+  interlocked = ""
+  if size_diff > 0:
+    interlocked += word1[0]
+    word1 = word1[1:]
+  
+  for letter, index in enumerate(word1, word2):
+    interlocked += letter + word2[index]
+  return interlocked
+
+# How does this change if words is a set
+# instead of a list?
+def all_interlocks(words):
+  interlocking = []
+  for word1 in words:
+    for word2 in words:
+      if interlock(word1, word2) in words:
+        interlocking.append((word1, word2))
+  
+  return interlocking
+        
+```
+:::
+:::
+
+## Examples with Some Code 4.2, **Think Python Exercise 10.12** {.smallerr}
+
+::: columns
+::: {.column width="40%"}
+Two words "interlock" if taking alternative letters from each forms a new word. For example, "shoe" and "cold" interlock to form "schooled". Given a list of words, find all pairs of words that interlock. If $n$ is the number of words and $k$ is the maximum length of a word, what are the complexities?
+:::
+
+::: {.column width="60%"}
+```{python}
+#| echo: true
+#| eval: false
+
+def deinterlock(word):
+  flip_flop = True
+  first_word = ""
+  second_word = ""
+  
+  for letter in word:
+    if flip_flop:
+      first_word += letter
+    else:
+      second_word += letter
+    flip_flop = not flip_flop
+  
+  return first_word, second_word
+
+def all_interlocks(words):
+  as_set = set(words)
+  interlocking = []
+  for word in words:
+    word1, word2 = deinterlock(word)
+    if word1 in as_set and word2 in as_set:
+      inlocking.append((word1, word2))
+  return interlocking
+
+```
+:::
+:::
+
+## The Python Data Structures[^3] {.smaller}
+
+Data Structures are simply objects that store data. Depending on how data is stored, various operations will take different amounts of time. The most standard operations are:
+
+* **Access**: Given a specific index or key, how long does it take the data structure to return the element stored?
+* **Search**: Given a specific element, how long does it take the data structure to determine if that element is present? Variations of search include standard set operations such as union and intersect.
+* **Insert**: Given a specific element, how long does it take to add it to the data structure?
+* **Deletion**: Given a specific element or index, how long does it take to remove it?
+
+[^3]: Data structures and algorithms are theoretical fields where the specific complexities are *usually* of what program language is being used, with many exceptions you likely do not need to concern yourself with. See the [docs](https://docs.python.org/3/tutorial/datastructures.html).
+
+## List Experiments (ArrayList) {.small}
+
+```{python list_experiments}
+#| label: list-experiments
+#| echo: true
+
+import timeit
+import matplotlib.pyplot as plt
+
+TRIALS = 2000
+SIZES = range(100, 2000, 50)
+
+my_lists = []
+for size in SIZES:
+  my_lists.append(list(range(size)))
+
+# Can also do (List Comprehension)
+# my_lists = [list(range(size)) for size in SIZES]
+
+```
+
+## List Access {.small}
+
+Python Lists are also (almost) Arrays
+
+```{python}
+#| echo: true
+
+front_access_times = []
+back_access_times = []
+
+for list_ in my_lists:
+  front_access_times.append(timeit.timeit(lambda: list_[0], number=TRIALS))
+  back_access_times.append(timeit.timeit(lambda: list_[-1], number=TRIALS))
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(1)
+plt.subplot(211)
+plt.plot(SIZES, front_access_times, 'ro')
+plt.ylabel("Time to Access Front")
+
+plt.subplot(212)
+plt.plot(SIZES, back_access_times, 'ro')
+
+plt.ylabel("Time to Access Back")
+plt.xlabel("List Size")
+plt.show()
+```
+
+## List Search {.small}
+
+```{python}
+#| echo: true
+
+search_times = []
+
+for list_ in my_lists:
+  search_times.append(timeit.timeit(lambda: 1000 in list_, number=TRIALS))
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(2)
+plt.plot(SIZES, search_times, 'ro')
+
+plt.ylabel("Time to Search")
+plt.xlabel("List Size")
+plt.show()
+```
+
+## List Insert {.smaller}
+
+Python Lists are also stacks
+
+::: columns
+::: {.column width="45%"}
+```{python}
+#| echo: true
+
+append_times = []
+insert_times = []
+
+for list_ in my_lists:
+  append_times.append(
+    sum(timeit.repeat(
+      "list_copy.append(-1)",
+      setup="list_copy = list(list_)",
+      repeat=TRIALS,
+      number=100,
+      globals=globals()))/TRIALS)
+    
+  insert_times.append(
+    sum(timeit.repeat(
+      "list_copy.insert(90, -1)",
+      setup="list_copy = list(list_)",
+      repeat=TRIALS,
+      number=100,
+      globals=globals()))/TRIALS)
+
+```
+:::
+
+
+::: {.column width="55%"}
+
+```{python}
+#| fig-align: center
+
+plt.figure(3)
+plt.subplot(211)
+plt.plot(SIZES, append_times, 'ro')
+plt.ylabel("Time to Add to End")
+
+plt.subplot(212)
+plt.plot(SIZES, insert_times, 'ro')
+
+plt.ylabel("Time to Add to Middle")
+plt.xlabel("List Size")
+plt.show()
+```
+:::
+:::
+
+
+
+## List Delete {.smaller}
+
+::: columns
+::: {.column width="45%"}
+```{python}
+#| echo: true
+
+delete_times = []
+pop_times = []
+
+for list_ in my_lists:
+  delete_times.append(
+    sum(timeit.repeat(
+      "del list_copy[10]",
+      setup="list_copy = list(list_)",
+      repeat=TRIALS,
+      number=80,
+      globals=globals()))/TRIALS)
+    
+  pop_times.append(
+    sum(timeit.repeat(
+      "list_copy.pop()",
+      setup="list_copy = list(list_)",
+      repeat=TRIALS,
+      number=100,
+      globals=globals()))/TRIALS)
+
+```
+:::
+
+::: {.column width="55%"}
+
+```{python}
+#| fig-align: center
+
+plt.figure(5)
+plt.subplot(211)
+plt.plot(SIZES, delete_times, 'ro')
+plt.ylabel("Time to Delete from Front")
+
+plt.subplot(212)
+plt.plot(SIZES, pop_times, 'ro')
+
+plt.ylabel("Time to Delete from End")
+plt.xlabel("List Size")
+plt.show()
+```
+:::
+:::
+
+## Set Experiments (HashSet) {.small}
+
+Sets have limited functionality! We can add, delete, and search elements in constant time, but cannot maintain any indexing or ordering.
+
+```{python}
+#| label: set-experiments
+#| echo: true
+#| eval: true
+
+my_sets = []
+for size in SIZES:
+  my_sets.append(set(range(size)))
+
+```
+
+## Set Search {.small}
+
+```{python}
+#| echo: true
+
+search_times = []
+
+for set_ in my_sets:
+  search_times.append(timeit.timeit(lambda: 1000 in set_, number=TRIALS))
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(22)
+plt.plot(SIZES, search_times, 'ro')
+
+plt.ylabel("Time to Search")
+plt.xlabel("Set Size")
+plt.show()
+```
+
+## Set Insert {.small}
+
+```{python}
+#| echo: true
+
+add_times = []
+for set_ in my_sets:
+  add_times.append(sum(timeit.repeat(
+    "set_copy.add(90000)",
+    setup="set_copy = set(set_)",
+    repeat=TRIALS,
+    number=1,
+    globals=globals()))/TRIALS)
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(23)
+plt.plot(SIZES, add_times, 'ro')
+
+plt.ylabel("Time to Add")
+plt.xlabel("Set Size")
+plt.show()
+```
+
+## Set Delete {.small}
+
+```{python}
+#| echo: true
+
+remove_times = []
+for set_ in my_sets:
+  remove_times.append(sum(timeit.repeat(
+    "set_copy.remove(90)",
+    setup="set_copy = set(set_)",
+    repeat=TRIALS,
+    number=1,
+    globals=globals()))/TRIALS)
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(24)
+plt.plot(SIZES, remove_times, 'ro')
+
+plt.ylabel("Time to Add")
+plt.xlabel("Set Size")
+plt.show()
+```
+
+## Dictionary Experiments (HashMap) (TP App B.4) {.small}
+
+Remember, Dictionaries are just sets that associate the keys with values!
+
+```{python}
+#| label: dict-experiments
+#| echo: true
+#| eval: true
+
+my_dicts = []
+for size in SIZES:
+  # Even dict comprehensions exist!
+  # Although dictionaries can use integers as keys, for illustration I cast the integers into strings
+  my_dicts.append({str(i): i ** 2 for i in range(size)})
+
+```
+
+## Dictionary Access {.small}
+
+```{python}
+#| echo: true
+
+access_times = []
+
+for dict_ in my_dicts:
+  access_times.append(timeit.timeit(lambda: dict_["90"], number=TRIALS))
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(31)
+plt.plot(SIZES, access_times, 'ro')
+
+plt.ylabel("Time to Access")
+plt.xlabel("Dictionary Size")
+plt.show()
+```
+
+## Dictionary Search {.small}
+
+```{python}
+#| echo: true
+
+search_times = []
+
+for dict_ in my_dicts:
+  search_times.append(timeit.timeit(lambda: 1000 in dict_, number=TRIALS))
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(32)
+plt.plot(SIZES, search_times, 'ro')
+
+plt.ylabel("Time to Search")
+plt.xlabel("Dictionary Size")
+plt.show()
+```
+
+## Dictionary Insert {.small}
+
+```{python}
+#| echo: true
+
+add_times = []
+for dict_ in my_dicts:
+  add_times.append(sum(timeit.repeat(
+    "dict_['90000'] = [1,2,3]",
+    setup="dict_copy = dict(dict_)",
+    repeat=TRIALS,
+    number=1,
+    globals=globals()))/TRIALS)
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(33)
+plt.plot(SIZES, add_times, 'ro')
+
+plt.ylabel("Time to Add")
+plt.xlabel("Dictionary Size")
+plt.show()
+```
+
+## Dictionary Delete {.small}
+
+```{python}
+#| echo: true
+
+remove_times = []
+for dict_ in my_dicts:
+  remove_times.append(sum(timeit.repeat(
+    "dict_copy.pop('90', None)",
+    setup="dict_copy = dict(dict_)",
+    repeat=TRIALS,
+    number=1,
+    globals=globals()))/TRIALS)
+
+```
+
+```{python}
+#| fig-align: center
+
+plt.figure(34)
+plt.plot(SIZES, remove_times, 'ro')
+
+plt.ylabel("Time to Remove")
+plt.xlabel("Dictionary Size")
+plt.show()
+```
+
+## Linked Lists {.smallerr}
+
+Linked Lists are not native to Python, but they are one of the most basic data structures that you may see often in technical interviews. Try to determine the runtime complexities of the 4 basic operations of a Linked List. Read the code below to get an idea of how they are structured. **Hint: Draw a picture.**
+
+```{python}
+#| echo: true
+#| eval: false
+
+class Node:
+  def __init__(self, value):
+    self.value = value
+    self.next_node = None
+
+class LinkedList:
+  def __init__(self):
+    self.head = None
+    self.tail = None
+
+  def add_item_at_end(value):
+    if self.head is None:
+      self.head = Node(value)
+      self.tail = self.head
+    if self.tail is not None:
+      new_node = Node(value)
+      self.tail.next_node = new_node
+      self.tail = new_node
+  # ... and so on
+```
+
+
+
+## More Advanced Data Structures: {.smaller}
+
+* **Graphs**: General data structure describing nodes and edges. Entire classes can be taken on these.
+* **Trees**: Graphs that have no cycles and a parent/child structure.
+* **Binary Search Trees**: Trees which have the elements sorted to quickly check if they are present.
+* **Heaps**: A type of tree for getting the maximum element quickly.
+* **KD Trees**: Generalization of Binary Search Trees to multiple dimensions. Incredibly useful in Data Science and Computer Graphics.
+* [And many more...](https://www.bigocheatsheet.com/) (I have personally only directly used the ones previously listed)
+
+## **Example:** [Repeated DNA Sequences](https://leetcode.com/problems/repeated-dna-sequences/) {.smaller}
+
+The DNA sequence is composed of a series of nucleotides abbreviated as `'A'`, `'C'`, `'G'`, and `'T'`.
+
+For example, `"ACGAATTCCG"` is a DNA sequence.
+When studying DNA, it is useful to identify repeated sequences within the DNA.
+
+Given a string s that represents a DNA sequence, return all the `10`-letter-long sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in any order.
+
+Example 1:
+```
+Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+Output: ["AAAAACCCCC","CCCCCAAAAA"]
+```
+
+```
+Example 2:
+
+Input: s = "AAAAAAAAAAAAA"
+Output: ["AAAAAAAAAA"]
+```
+
+## **Example:** [Two Sum](https://leetcode.com/problems/two-sum/) {.smaller}
+
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+Example 1:
+```
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+```
+Example 2:
+```
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+```
+Example 3:
+
+```
+Input: nums = [3,3], target = 6
+Output: [0,1]
+```
+
+## **Example:** [Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/) {.smaller}
+
+Given two integer arrays `nums1` and `nums2`, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
+
+Example 1:
+```
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+```
+Example 2:
+```
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+Explanation: [4,9] is also accepted.
+```
+ 
+## **Example:** [Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/) {.smaller}
+
+Given two integer arrays `nums1` and `nums2`, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+ 
+
+Example 1:
+```
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+```
+Example 2:
+```
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [4,9]
+Explanation: [9,4] is also accepted.
+```
+
+# Studying on Your Own
+
+In summary: Pick a field/discipline you are most interested in, find some listings that talk about qualifications, and study relevant resources for passing the interviews. If you want to focus on it now, you can, but certainly do not have to. You can do an internship after your 2nd year!
+
+## Get GOOD at Python
+
+-   This will be most valuable to you outside of a job search, and you usually cannot pass technical interviews if you do not know how to write the code (even if you know the solution).
+-   [Thinking with Python](https://greenteapress.com/thinkpython2/thinkpython2.pdf)
+-   [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/)
+-   [Python Documentation](https://docs.python.org/3/)
+-   [Modeling and Simulation in Python](https://allendowney.github.io/ModSimPy/index.html)
+-   [STA663 Course Notes](https://sta663-sp22.github.io/)
+-   Make something you are interested in!
+
+
+## Program Challenge Practice
+
+-   [Leetcode](leetcode.com)
+-   [HackerRank](https://www.hackerrank.com/)
+-   [NeetCode YouTube](https://www.youtube.com/c/neetcode) (Great explanations)
+
+## Your classes
+
+-   Deliberately write the best code you can on your assignments, even if its not in Python
+-   Experiment with code from class
+-   Learn well and progress in the master's program.
+  - You will be far better off by doing well in your classes and learning the material well, than doing lots of internship prep and doing poorly in your courses.
+-   There are also algorithms and data structures courses here
+
+
+## Books
+
+-  [Algorithm Design](https://ict.iitk.ac.in/wp-content/uploads/CS345-Algorithms-II-Algorithm-Design-by-Jon-Kleinberg-Eva-Tardos.pdf)
+-  [Cracking the Coding Interview](https://www.crackingthecodinginterview.com/contents.html)
+-  [Open Data Structures](https://opendatastructures.org/)
+-  [A Practical Guide to Quantitative Finance Interviews](https://github.com/geniayuan/datasciencecoursera/blob/master/%5BXinfeng%20Zhou%5DA%20practical%20Guide%20to%20quantitative%20finance%20interviews.pdf)
+

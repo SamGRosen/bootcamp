@@ -1,0 +1,18 @@
+{
+    "data":
+      [ ## List of people
+        {
+          "person": "amy3",
+          "age": 20,
+          "job": "waiter",
+          "favorite_color": "blue"
+        },
+        {
+          ## Barry is friends with my Dad, Jerry
+          "person": "barry3",
+          "age": 30,
+          "job": "engineer",
+          "favorite_color": "grey"
+        }
+      ]
+}

@@ -1,0 +1,1099 @@
+---
+title: "Basics and Foundation of Python"
+subtitle: "With notes from [*Think Python (2nd Edition)*](https://greenteapress.com/wp/think-python-2e/)"
+author:
+  - Sam Rosen
+format:
+  revealjs: 
+    slide-number: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    theme: theme.scss
+execute:
+  echo: true
+  eval: true
+  
+---
+
+## Outline
+
+* Python Intro
+* Python Overview
+  * Basic Types (`int`, `float`, `string`, `bool`)
+  * Data Structures (`list`, `tuple`, `set`, `dict`)
+  * Other useful things (`file`, `Exception`)
+* Example Script from the Survey
+* More Python
+* Exercises
+
+## Python vs. R
+
+-   You will use `R` in your early courses more
+-   Python is generally better for professional purposes
+-   Both have strong tools for statistical analysis
+    -   Some areas are better done in R, others in Python
+    -   You will be good at both by the time you graduate
+-   Although they are different languages, getting comfortable with Python can help with getting comfortable with R
+
+# Integers {.smaller}
+
+* Integers are numbers with no decimal. In Python 3 they are unbounded. 
+* Numbers are useful.
+
+```{python}
+#| eval: false
+4 + 2
+5 / 2
+2 ** 3
+2 ^ 3  # This is not an exponent
+8 // 3  # Floor division can be very useful
+
+int("1002")  # Convert string to int
+int(10.9) == 10  # Convert `float` to `int`
+divmod(10, 3) == (3, 1)  # Get floor division and remainder
+```
+
+:::footer
+Think Python (2nd Edition) [Chapter 1.5](https://greenteapress.com/thinkpython2/html/thinkpython2002.html#sec10)
+:::
+
+
+# Floats {.smaller}
+
+* Floats are numbers with a decimal. In Python 3 they are bounded above and below by $\approx \pm10^{308}$.
+* Numbers remain useful with a decimal component.
+
+```{python}
+#| eval: true
+4.5 + 2.5  # 7.0
+5.2 / 2.3  
+2.2 ** 3.1
+#  2.1 ^ 3.1  # This is still not an exponent and causes an error
+8.4 // 3.1  # 2.0
+
+float("-1002.101")  # Convert string to int
+float(10) == 10.0  # Convert `int` to `float` (almost always unnecessary)
+_, remainder = divmod(8.4, 2.05)  # (4.0, 0.20000000000000107)
+
+print(0.2 == remainder)  # Floating point arithmetic can be confusing
+print(remainder - 0.2)
+print(abs(remainder - 0.2) < 1e-10)
+```
+
+:::footer
+Think Python (2nd Edition) [Chapter 1.5](https://greenteapress.com/thinkpython2/html/thinkpython2002.html#sec10), [Chapter 7.5](https://greenteapress.com/thinkpython2/html/thinkpython2008.html#sec86)
+:::
+
+# Boolean {.smallest}
+
+* `bool`s are used for conditional execution
+
+```{python}
+def check_num(x):
+  x = float(x)
+  if not x.is_integer():
+    print(x, "is a float")
+  elif x % 2:
+    print(x, "is odd")
+  else:
+    print(x, "is even")
+
+check_num(4.0)
+check_num(5)
+check_num(0.1)
+```
+
+* In python, most things can be cast to a `bool`. If they cast to `True`, then they are "truthy".
+
+```{python}
+#| eval: False
+bool(0)
+bool(1.1)
+bool("")
+bool("Hi")
+bool([1,2,3])
+bool([]) or bool([5])
+bool(1) and bool(10)
+not bool({"hi": "there"})
+```
+
+
+:::footer
+Think Python (2nd Edition) [Chapter 5](https://greenteapress.com/thinkpython2/html/thinkpython2006.html)
+:::
+
+## Useful Functions {.smaller}
+
+* `any`: returns `True` if *any* element is "truthy"
+```{python}
+#| eval: False
+
+any([False, 1, "", {}])  # True
+any([False, 0, "", [], 0])  # False
+```
+* `all`: returns `True` is *all* elements are "truthy"
+```{python}
+#| eval: False
+
+all([1, "hello", "False", [1]])  # True
+all([1, "hello", "False", [1], ""])  # False
+```
+* `filter`: easy way to *filter* a sequence of elements
+```{python}
+list(filter(lambda num: num > 5, [2, 3, 4, 10, 20]))
+```
+* `int`: casting `bool`s to `int`s can be very useful: `int(True)` or `int(False)`
+
+### Good Practice
+
+* Do not do `if x == True:`, just `if x:`
+
+# None {.smaller}
+
+* Many programming languages have a concept of a "null pointer", i.e. a value to signify no value. In Python, this is called `None`.
+* To check if something is `None` simply do `x is None` or `x is not None`.
+
+:::footer
+Think Python (2nd Edition) [Chapter 3.10](https://greenteapress.com/thinkpython2/html/thinkpython2004.html#sec36)
+:::
+
+## Good Practice {.smallest}
+
+* `x == None` and `x != None` also work, but using `is` is considered to be correct, because there is only one `None` object.
+* By default, all functions return `None`, so you will run into bugs if you do
+
+```{python}
+#| eval: false
+#| echo: true
+
+def my_func(x):
+  print(x ** 2)
+  
+y = my_func(4)
+print(y)  # None
+y * 2  # TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+```
+
+* Functions with a goal to "find" something may also return `None` if it cannot be found. It's important to determine return values with documentation.
+
+```{python}
+#| echo: true
+
+s = "abcdef"
+
+try:
+  print("z index:", s.index("z"))
+except ValueError as e:
+  print("Exception:", e)
+
+print("z find:", s.find("z"))
+#  This is a dictionary comprehension
+letter_lookup = {letter: index for index, letter in enumerate(s)}
+print("Index of b:", letter_lookup.get("b"))
+print("Index of z:", letter_lookup.get("z"))
+
+```
+
+# Strings {.smaller}
+
+* Strings are sets of characters that are useful for many things.
+* Everything in python has indexing start at 0, including strings.
+
+```{python}
+my_str = "hello there"
+print(my_str[1])
+
+num = 4
+print(str(num) + " is my favorite number")
+
+```
+
+:::footer
+Think Python (2nd Edition) [Chapter 8](https://greenteapress.com/thinkpython2/html/thinkpython2009.html)
+:::
+
+
+## Useful Functions/Methods {.smaller}
+
+```{python}
+#| eval: False
+
+len("abcdef")  # 6
+
+sorted("defabc")  # "abcdef"
+
+reversed("hello world")  # "dlrow olleh"
+
+"hi friend".replace("friend", "john")  # "hi john"
+
+"HELLO FRIEND".lower()  # "hello friend"
+
+"hello, how are you?".split()  # ["hello,", "how", "are", "you?"]
+
+"     hello there!   ".strip()  # "hello there!"
+
+"+".join(["good", "evening", "friend"])  # "good+evening+friend"
+
+"hello" in "hello friend"  # True
+
+x = input("How are you?")  # User input
+```
+
+## Good Practice {.smaller}
+
+* Validate user input:
+```{python}
+#| eval: False
+
+x = input("How are you?")
+if x.lower() == "good":
+  print("Awesome!")
+```
+
+* Immutable:
+
+```{python}
+#| eval: False
+
+x = "hello"
+x[1] = "g"  # TypeError: 'str' object does not support item assignment
+```
+
+* Single, Double, Triple Quotes, and f-strings
+```{python}
+x = 'He said to me, "Hi!"'
+y = "He said to me, \"Hi!\""
+long_str = """Wow! that is crazy!
+I can't believe it!
+What on Earth?"""
+
+color = "red"
+num = 20
+print(f"My favorite color is {color}. I have {num} shirts with it.")
+```
+
+
+# Lists
+
+* Lists are mutable sequences of any type of element. They are good for indexing and maintaining some level of order.
+
+```{python}
+my_list = [1, 2, "c", "d"]
+
+my_list.append(5)  # Add to end of list
+my_list[1] = "b"
+print(my_list)
+```
+
+:::footer
+Think Python (2nd Edition) [Chapter 10](https://greenteapress.com/thinkpython2/html/thinkpython2011.html)
+:::
+
+## Useful Methods {.smaller}
+
+* `.extend`: add another sequence to a list
+* `.count`: count the number of an element in a list
+* `.pop`: remove the last element from a list
+* `.index`: find the index of an element in a list
+
+```{python}
+my_list = ["a", 2, "c"]
+my_list.extend([2, "c"])
+print(my_list)
+
+print(my_list.count("c"))
+print(my_list.index("c"))
+print(my_list.pop())
+print(my_list)
+```
+
+## Good Practice {.smallest}
+
+* Lists need to be copied with .copy(); otherwise they are aliased
+
+```{python}
+my_list = [1,2,3]
+my_list2 = my_list
+
+my_list2.append(4)
+print(my_list)
+print(my_list is my_list2)
+```
+
+* Lists, like strings, can be sliced to get various parts of them
+
+```{python}
+my_list = list("abcdefgh")
+print(my_list[:3], my_list[4:], my_list[2:5], my_list[:-1], my_list[::2])
+
+```
+
+
+* Lists can go inside lists! These may be referred to as multi-dimensional arrays
+
+```{python}
+#| eval: false
+
+[[1,2,3],
+ [4,5,6]]
+```
+
+* When building lists, sometimes a list comprehension is easier to read and write
+
+```{python}
+my_list = []
+for num in range(5):
+  my_list.append(num ** 2)
+  
+my_list2 = [num ** 2 for num in range(5)]
+
+print([num1 - num2 for num1, num2 in zip(my_list, my_list2)])
+
+```
+
+# Sets {.smaller}
+
+* Sets in Python operate very similarly to sets in standard mathematics. Elements must be unique, they are not in any order, and determine membership is a priority.
+
+```{python}
+my_set = {"a", "b", 1, 2}
+print("a" in my_set)
+
+```
+
+
+:::footer
+Think Python (2nd Edition) [Chapter 19.5](https://greenteapress.com/thinkpython2/html/thinkpython2020.html#sec227)
+:::
+
+
+## Useful Methods
+
+* `.pop`: Get and remove a random element from a set
+* `.add`: Add element to a set
+* `.remove`: Remove an element from a set
+* `.union`: Combine sets
+* [and many other set operations](https://docs.python.org/3.10/library/stdtypes.html#set-types-set-frozenset)
+
+## Good Practice {.smaller}
+
+* Use a `frozenset` if you do not plan on changing it
+
+```{python}
+my_set = frozenset(["a", "b", "c"])
+```
+
+* Recognize the many ways to make a set
+```{python}
+my_set1 = {1, 2, 3}
+my_set2 = set(range(1, 3))
+my_set3 = {x ** 2 for x in range(10)}
+```
+
+* Sets are also aliased
+
+```{python}
+my_set4 = my_set1
+my_set4.add(5)
+print(my_set1)
+print(my_set1 is my_set4)
+```
+
+# Dictionaries
+
+* `dict`s are great ways to map *keys* to *values*. A simple example is a histogram:
+
+```{python}
+my_str = "Welcome to duke!"
+
+my_dict = {}
+for character in my_str:
+  if character in my_dict:
+    my_dict[character] = my_dict[character] + 1
+  else:
+    my_dict[character] = 1
+
+print(my_dict)
+```
+:::footer
+Think Python (2nd Edition) [Chapter 11](https://greenteapress.com/thinkpython2/html/thinkpython2012.html)
+:::
+
+## Useful Methods {.smaller}
+
+* `.keys`: Get an iterable of all the keys in a dictionary
+
+* `.values`: Get an iterable of all the values in a dictionary
+
+* `.items`: Get an iterable of all the key-value pairs in a dictionary
+
+* `.update`: Combine two dictionaries
+```{python}
+my_dict = {"a": 1, "b": 2}
+my_dict2 = {"b": 3, "c": 4}
+my_dict.update(my_dict2)
+print(my_dict)
+```
+
+* `.get`: Get a value from a dictionary but specify a default
+
+```{python}
+my_str = "Welcome to duke!"
+
+my_dict = {}
+for character in my_str:
+  my_dict[character] = my_dict.get(character, 0) + 1
+print(my_dict)
+```
+
+## Good Practice {.smaller}
+
+* Do `key in my_dict` not `key in my_dict.keys()`
+
+* [`collections.defaultdict`](https://docs.python.org/3/library/collections.html) is another way to handle the need for default values in a dictionary
+
+* Nest dictionaries if necessary
+
+```{python}
+my_data = dict(
+  item1={
+    "status": "open",
+    "description": "..."
+  },
+  item2={
+    "status": "closed",
+    "issue": "..."
+  }
+)
+
+my_data["item1"]["status"]
+```
+
+
+# Tuples
+
+Very similar to `list`s, but they cannot be changed! They are *immutable*.
+
+```{python}
+
+my_list = [1, 2, 3]
+my_tuple = tuple(my_list)
+my_list[1] = 100
+print(my_tuple)
+
+try:
+  my_tuple[1] = 100
+except Exception as e:
+  print(e)
+
+```
+
+:::footer
+Think Python (2nd Edition) [Chapter 12](https://greenteapress.com/thinkpython2/html/thinkpython2013.html)
+:::
+
+## Good Practice {.smaller}
+
+* To make a `tuple` with one element: `x = (1,)`
+
+* Immutability allows `tuple`s to be used as `dict` keys and be stored in `set`s:
+
+```{python}
+my_key = (1, 2, 3, "four")
+my_dict = {my_key: "my favorite numbers"}
+my_set = set()
+my_set.add(my_key)
+
+print(my_dict)
+print(my_set)
+
+my_other_key = (1, ["a", "list"], 3)
+try:  # All elements of the tuple need to be immutable too
+  my_set.add(my_other_key)
+except Exception as e:
+  print(e)
+
+```
+
+
+# Iteration {.smallest}
+
+* Programming is all about doing tasks repeatedly because they would be too annoying to do by hand. Many objects have a natural way to iterate over them.
+
+```{python}
+from collections import Counter  # Makes a dictionary that counts elements
+my_str = "I enjoy eating almonds"
+
+def print_data(data):
+  for item in data:
+    print(item, end=" ")
+
+print_data(my_str)
+print_data(set(my_str))  # No order or repeats
+print_data(list(my_str))
+print_data(tuple(my_str))
+print_data(Counter(my_str))  # Dictionaries are ordered by insertion, iterates over keys
+
+```
+
+
+:::footer
+Think Python (2nd Edition) [Chapter 7](https://greenteapress.com/thinkpython2/html/thinkpython2008.html), [Chapter 8.3](https://greenteapress.com/thinkpython2/html/thinkpython2009.html#sec94)
+:::
+
+## Useful Functions
+
+* `len`: Get the natural size of an object
+* `enumerate`: Iterate over an object, but with index, value pairs.
+* `zip`: Iterate over two object at the same time
+* `map`: Map the values of an iterable using a function
+* `itertools` [module](https://docs.python.org/3/library/itertools.html): Contains many useful functions for specific kinds of iteration
+
+## Good Practice {.smallerr}
+
+* Consider how you might need to nest iteration
+```{python}
+values = [1,2,3,4,5]
+pairwise_distance = []
+for value1 in values:
+  for value2 in values:
+    pairwise_distance.append(abs(value1 - value2))
+
+```
+* `while` loops are useful if you are unsure how many iterations are needed
+```{python}
+#| eval: false
+# Find the 101st prime
+primes_found = []
+current_num = 2
+while len(primes_found) < 100:
+  if is_prime(current_num):
+    primes_found.append(current_num)
+  current_num += 1
+```
+* Use `continue` and `break`
+```{python}
+my_str = "aabbccaa"
+for letter in my_str:
+  if letter == "b":
+    continue  # Skip an iteration
+  if letter == "c":
+    break  # Exit loop, also used with while loops
+  print(letter, end = "")
+
+```
+# Functions {.smaller}
+
+* Functions are an essential part of passing functionality in Python from modules or in your code. It is a good idea to split your program up into repeatable parts to help with debugging. 
+
+```{python}
+def my_func(a, b, c=5):
+  return f"({a} + {b}) * {c} = {(a+b) * c}"
+
+print(my_func(1, 1, 0))
+print(my_func(10, 4))
+```
+
+* Recursion is an essential concept in Computer Science and parts of Data Science:
+
+```{python}
+
+def sum_of_first_k_nums(k):
+  if k == 0:  # Base case
+    return 0
+  return k + sum_of_first_k_nums(k - 1)
+
+sum_of_first_k_nums(5)
+```
+
+:::footer
+Think Python (2nd Edition) [Chapter 3](https://greenteapress.com/thinkpython2/html/thinkpython2004.html), [Chapter 6](https://greenteapress.com/thinkpython2/html/thinkpython2007.html#sec94)
+:::
+
+## Good Practice {.smallest}
+
+* Functions can have default arguments and return items like the previous slide
+* Functions can also take an arbitrary amount of arguments
+
+```{python}
+def my_func_with_inf_args(*args, **kwargs):
+  print(args)
+  print(kwargs)
+  
+my_func_with_inf_args(1, 2, 3, a=4, b=5)
+```
+
+* Functions can be passed around in Python
+```{python}
+def call_twice(some_func, *args, **kwargs):
+  some_func(*args, **kwargs)
+  some_func(*args, **kwargs)
+  
+call_twice(my_func_with_inf_args, 1, 2, f=9)
+```
+
+* Although it's more typical to see this as a `lambda` function
+
+```{python}
+call_twice(lambda: my_func_with_inf_args(1, 2, f=9))
+
+```
+
+
+# Objects {.smallest}
+
+Objects are everywhere and naturally you can make your own.
+
+```{python}
+from random import shuffle
+
+SUITES = ("Hearts", "Spades", "Clubs", "Diamonds")
+RANKS = (2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King", "Ace")
+
+class CardDeck:
+  def __init__(self, empty=False):  # Constructor
+    self.cards = []
+    if not empty:
+      for suit in SUITES:
+        for rank in RANKS:
+          self.cards.append((suit, rank))
+  
+  def add_card(self, suit, rank):
+    self.cards.append((suit, rank))
+  
+  def shuffle(self):
+    shuffle(self.cards)
+    
+  def draw_card(self):
+    return self.cards.pop()
+
+my_deck = CardDeck()
+my_deck.shuffle()
+print(my_deck.draw_card())
+print(my_deck.draw_card())
+```
+
+
+:::footer
+Think Python (2nd Edition) [Chapter 15](https://greenteapress.com/thinkpython2/html/thinkpython2016.html), [Chapter 16](https://greenteapress.com/thinkpython2/html/thinkpython2017), [Chapter 17](https://greenteapress.com/thinkpython2/html/thinkpython2018), [Chapter 18](https://greenteapress.com/thinkpython2/html/thinkpython2019)
+:::
+
+## Useful Methods
+
+* Your own!
+
+* [Magic Methods](https://rszalski.github.io/magicmethods/)
+
+```{python}
+#| eval: False
+
+class CardDeck:
+  # ...
+  def __len__(self):
+    return len(self.cards)
+  
+  def __contains__(self, card):
+    return card in self.cards
+
+my_deck = CardDeck()
+len(my_deck)
+("Hearts", "Queen") in my_deck
+```
+
+## Good Practice {.smaller}
+
+```{python}
+class DiscardPile(CardDeck):  # Inheritance let's you reuse code
+  def __init__(self):
+    CardDeck.__init__(self, empty=True)
+
+  def add_card(self, deck):
+    drawn_card = deck.draw_card()
+    self.cards.append(drawn_card)
+    return drawn_card
+
+my_deck = CardDeck()
+discard = DiscardPile()
+discarded_card = discard.add_card(my_deck)
+```
+
+* Terminology matters
+  * Function: stand-alone function (`print`)
+  * Method: function that is attached to a class (`draw_card`)
+  * Attribute: variable attached to a class (`my_deck.cards`)
+  * Constructor: the `__init__` method
+  * Instance: a constructed object (`my_deck`)
+  
+# Exceptions and Error Handling {.smaller}
+
+If your program runs into an error, it will terminate if the resulting `Exception` is not caught.
+
+```{python}
+my_list = [2, "hi"]
+try:
+  my_str = ",".join(my_list)  # TypeError: sequence item 0: expected str instance, int found
+except TypeError:
+  my_list = [str(element) for element in my_list]
+  my_str = ",".join(my_list)
+
+# Program continues...
+
+```
+
+## Common Exceptions {.smaller}
+
+* `Exception`: All exceptions fall under this class
+* `ArithmeticError`: Base exception for `OverflowError`, `ZeroDivisionError`, `FloatingPointError`
+* `AttributeError`: Attempting to access an attribute that does not exist on an object
+* `IndexError`: Attempting to use an invalid index on a sequence
+* `KeyboardInterrupt`: Raised when `ctrl-c` is pressed during execution
+* `NameError`: Using a variable that does not exist
+* `TypeError`: Operating on two objects with incompatible types
+* `ValueError`: Input to a function is invalid
+
+## Good Practice {.smaller}
+
+* Avoid catch-all exceptions. If you use a try-catch, usually you have a specific exception in mind to handle. Other exceptions should be raised to see bugs when they happen.
+
+```{python}
+#| eval: False
+try:
+  some_complicated_function()
+except Exception:  # Bad
+  print("SOMETHING went wrong!")
+```
+
+* Print them!
+
+```{python}
+#| eval: False
+try:
+  some_complicated_function()
+except MemoryError as e:
+  print("Out of memory!", e)
+```
+
+* `raise` your own!
+```{python}
+def my_complicated_function(some_matrix):
+  if not some_matrix.is_square():
+    raise ValueError(f"some_matrix is not square!")
+```
+
+# Files {.smaller}
+
+* One way to read input and write output for a program is by writing to a file. This is generally a good idea if you might want to save the results for later.
+
+```{r}
+#| eval: False
+# Writing files, use the mode argument
+# Careful! This will delete the file if it is present
+my_file = open("path_to_file.txt", mode="w")  
+my_file.write("output I want to keep")
+my_file.close()  # You must close the file, or your results may be lost
+
+# Reading files
+my_file = open("path_to_file.txt", mode="r")  # The mode is r by default
+print(my_file.readline())
+my_file.close()
+```
+
+
+:::footer
+[Python Docs on Files](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files), Think Python (2nd Edition) [Chapter 14](https://greenteapress.com/thinkpython2/html/thinkpython2015.html)
+:::
+
+## Useful Functions/Methods {.smaller}
+
+* The `os.path` [module](https://docs.python.org/3/library/os.path.html) and the `pathlib` [module](https://docs.python.org/3/library/pathlib.html) contain many methods for operating on the file system:
+  * `os.path.exists`: Determine if a file exists at a given path
+  * `os.path.join`: Join two path components together
+  * `os.listdir`: List files in a directory
+
+* `json.load` in the `json` [module](https://docs.python.org/3/library/json.html) is vital for reading `.json` files. It is also useful for writing dictionaries to a file with `json.dump`.
+* `.readlines()`: Read a file in line-by-line altogether
+
+## Good Practice {.smaller}
+
+* You can use the `with` statement to automatically close files when you are done using them. This includes if your program terminates unexpectedly.
+
+```{python}
+#| eval: False
+
+with open("my_file.txt") as f:
+  f.readline()
+  # ...
+# Outside the above indentation f cannot be used as it is closed
+```
+
+* If your files contain text that is not in the [ASCII codec](https://www.ascii-code.com/), specify the encoding:
+
+```{python}
+#| eval: False
+
+with open("my_file.txt", encoding="utf-8") as f:
+  print(f.readline())  # Supports many unicode characters
+
+```
+
+# Example Script
+
+## Problem Statement
+
+A friend has a directory of 1000 files where each file has one of the following extensions: `.csv`, `.tsv`, `.json`. However, each file has comments throughout it delimited by `##`, so they do not follow the proper format. They ask you to write a Python script which will combine all the files into 1 while removing the comments and ensuring the data is in a proper `.csv` format.
+
+## What is the input? {.smallest}
+
+Character-delineated files and JSON
+
+```
+    person,age,job,favorite_color
+    amy,20,waiter,blue
+    barry,30,engineer,grey
+    ## we have only adults in the dataset
+    carl,25,None,purple ## None means unemployed
+    ## this person did not understand the survey dan,29,superhero,pineapple 
+```
+```
+    person    age   job   favorite_color
+    amy   20    waiter    blue
+    barry   30    engineer    grey
+    ## we have only adults in the dataset
+    carl    25    None    purple ## None means unemployed
+    ## this person did not understand the survey dan    29    superhero   pineapple 
+```
+```
+    {
+      "data": [ ## List of people
+        {
+          "name": "amy",
+          "age": 20,
+          "job": "waiter",
+          "favorite_color": "blue"
+        },
+        {
+          ## Barry is friends with my Dad, Jerry
+          "name": "barry", 
+          "age": 30,
+          "job": "engineer",
+          "favorite_color": "grey"
+        },
+        ... omitted for brevity
+      ]
+    }
+```
+
+## Psuedo Code
+
+    Create a variable to store data from all files
+
+    For every file my friend has
+      Read them in line-by-line
+      Remove all comments in each line
+      Remove all empty lines
+      If it is a .csv
+        Seperate the commas and store it
+      If it is a .tsv
+        Seperate the tabs and store it
+      If it is a .json
+        Read the .json and store it
+        
+    Turn the variable that is storing all the data into a .csv
+
+## Step 1 {.smaller}
+
+`Create a variable to store data from all files`
+
+```{python}
+#| eval: false
+
+HEADERS = ["name", "age", "job", "favorite_color"]
+
+my_data = [
+  # ("amy", 20, "waiter", "blue") example entry
+]
+
+```
+
+`For every file my friend has, Read it in as a string`
+
+
+```{python}
+#| eval: false
+
+import os
+
+path_to_folder = "./my_friend/stored/the/files/here"
+
+for file_path in os.listdir(path_to_folder):
+  file = open(file_path)
+  file_as_lines = file.readlines()
+  # [
+  #    "person,age,job,favorite_color\n",
+  #    "amy,20,waiter,blue\n",
+  #    "barry,30,engineer,grey\n",
+  #    "## we have only adults in the dataset\n",
+  #    "carl,25,None,purple ## None means unemployed\n",
+  #    "## this person did not understand the survey dan,29,superhero,pineapple"
+  # ]
+```
+
+:::footer
+[os.listdir](https://docs.python.org/3/library/os.html#os.listdir)
+:::
+
+## Step 2 {.smaller}
+
+`Remove all comments in each line then remove all empty lines`
+
+```{python}
+
+def remove_comments(line):
+  no_whitespace = line.strip() #  => "## this is a comment"
+  if "##" in no_whitespace:
+    comment_starts_at_index = no_whitespace.index("##")
+    filtered = no_whitespace[:comment_starts_at_index]
+    return filtered.strip() # In case there are spaces around the comment
+  return no_whitespace
+
+print("test 1", remove_comments("  ## this is a comment  "))
+print("test 2", remove_comments("person,age,job,favorite_color"))
+print("test 3", remove_comments("person,age,job,favorite_color## comments   "))
+
+```
+
+```{python}
+#| eval: False
+file_with_no_comments = ""
+for line in file_as_lines:
+  comments_removed = remove_comments(line)
+  if comments_removed:
+    file_with_no_comments += comments_removed + "\n"
+```
+
+
+## Step 3 {.smaller}
+
+`If it is a .csv or .tsv, seperate the commas or tabs and store it`
+
+```{python}
+#| eval: false
+
+def get_delimited_entries(file_as_str, delimiter):
+  to_return = []
+  lines = file_as_str.split("\n")
+  for line in lines[1:]:  # Skip header
+    to_return.append(line.split(delimiter))
+  
+  return to_return
+
+if file_path.endswith(".csv"):
+  my_data.extend(get_delimited_entries(file_with_no_comments, ","))
+elif file_path.endswith(".tsv"):
+  my_data.extend(get_delimited_entries(file_with_no_comments, "\t"))
+```
+
+## Step 4 {.smaller}
+
+`If it is a .json read the .json and store it`
+
+```{python}
+#| eval: false
+
+import json
+
+# ... continued
+elif file_path.endswith(".json"):
+  as_dict = json.loads(file_with_no_comments)
+  for entry in as_dict["data"]:
+    my_data.append([str(entry[header]) for header in HEADERS])
+else:
+  print(f"Could not read file: {file_path}")
+  
+  file.close()
+# end for loop over files
+```
+
+## Step 5 {.smaller}
+
+`Turn the variable that is storing all the data into a .csv`
+
+```{python}
+#| eval: false
+
+as_csv = ",".join(HEADERS) + "\n"
+for entry in my_data:
+  as_csv += ",".join(entry) + "\n"
+
+with open("output.csv", "w") as output_file:
+  output_file.write(as_csv)
+```
+
+
+Full script [here](https://gist.github.com/SamGRosen/49d3ae2458083c4b975246ddd0622fcf)
+
+# More Python
+
+## Libraries {.smaller}
+
+*  [django](https://www.djangoproject.com/): Framework for building websites via full-stack development
+*  [csv](https://docs.python.org/3/library/datetime.html): Built-in library for handling csv files
+*  [SQLAlchemy](https://www.sqlalchemy.org/): Extensive database support
+*  [requests](https://pypi.org/project/requests/): Make HTTP requests for API calls and web scraping
+*  [Pillow](https://pillow.readthedocs.io/en/stable/): Image processing
+*  [six](https://pypi.org/project/six/): Python 2 and 3 compatibility
+*  [Polars](https://www.pola.rs/): Pandas alternative
+*  [BeautifulSoup](https://crummy.com/software/BeautifulSoup/bs4/doc/): Parse HTML input
+*  [Numba](https://numba.pydata.org/): Speed up python
+*  [pygame](https://www.pygame.org/news): Game development
+*  [nltk](https://www.nltk.org/): Natural Language Processing
+*  [PyTorch](https://pytorch.org/), [TensorFlow](https://www.tensorflow.org/): Neural Networks 🤮 
+*  Many, many more... (such as the ones that will be covered in the coming days)
+
+## New Stuff {.smaller}
+
+*  Python is actively [updated](https://docs.python.org/3/whatsnew/index.html)!
+*  [Performance improvements!](https://www.python.org/downloads/release/python-3110/) (3.11)
+*  [Walrus Operator](https://docs.python.org/3/whatsnew/3.8.html) (3.8)
+*  [f-strings](https://docs.python.org/3/whatsnew/3.6.html#whatsnew36-pep498) (3.6)
+*  [Pattern Matching](https://peps.python.org/pep-0636/) (3.10)
+*  [Type Annotations](https://docs.python.org/3/library/typing.html) (Introduced in 3.5 but still getting changes 3.11)
+*  [async and await](https://docs.python.org/3/whatsnew/3.7.html) (3.7)
+*  If you want to get better at Python, it helps to learn the new features and *why* they were added. Many of them address the weak points of Python.
+*  Furthermore, Python's most used libraries get updated frequently!
+
+## Testing {.smaller}
+
+In a professional environment, unit tests may be written to ensure bugs are not introduced during the development process.
+
+```{python}
+#| eval: False
+
+import unittest
+from my_module import my_func
+
+class TestMyStuff(unittest.TestCase):
+    def test_my_func(self):
+        my_output = my_func(1, 2, 3)
+        self.assertEqual(6, my_output)
+        
+    def test_my_func_with_strings(self):
+        my_output = my_func(1, 2, 3, "h")
+        self.assertEqual(60, my_output)
+    
+    def test_my_func_raises_exception(self):
+        with self.assertRaises(ValueError):
+          my_output = my_func(1, 2, 3, "h", "")
+```
+
+## Lower-level Language Bindings {.smaller}
+
+* As a high-level language, Python is relatively slow.
+* Python can call optimized code written in `C`, `C++`, `fortran`, etc. to achieve very similar speeds. 
+* This is why `numpy` is so much faster.
+* Use the right tool for the right job.
+
+# Exercises
+
+

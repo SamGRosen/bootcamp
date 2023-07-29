@@ -1,0 +1,6 @@
+person	age	job	favorite_color
+amy2	20	waiter	blue
+barry2	30	engineer	grey
+## we have only adults in the dataset
+carl2	25	None	purple ## None means unemployed
+## this person did not understand the survey dan	29	superhero	pineapple
