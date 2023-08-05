@@ -1,6 +1,6 @@
 ---
 title: "Incredibly Fast Rundown of Machine Learning and `scikit-learn`"
-subtitle: "With notes from [*Cynthia Rudin*](https://users.cs.duke.edu/~cynthia/teaching.html)"
+subtitle: "With notes from [*Rudin*](https://users.cs.duke.edu/~cynthia/teaching.html), [*Hastie et al.*](https://hastie.su.domains/ElemStatLearn/) and [*James et al.*](https://www.statlearning.com/)"
 author:
   - Sam Rosen
 format:
@@ -15,24 +15,32 @@ execute:
   eval: true
 ---
 
-## Outline
+## References throughout {.smaller}
 
-* What is Machine Learning?
-* Types of Machine Learning
-  * Supervised
-    * Classification
-    * Regression
-  * Unsupervised
-    * Clustering
-    * Data Mining
-    * Dimensionality Reduction
-* Typical Machine Learning Pipeline w/ scikit-learn
-* Pitfalls
-* Resources
+If you want a more in-depth dive of this material, see these materials, but focusing on your courses is plenty sufficient.
+
+-   [An Introduction to Statistical Learning](https://www.statlearning.com/) (`ISL`) by *James et al.*: Friendlier introduction with plenty of code examples in `R` or `Python`, STA521 Textbook. [Free Online Course](https://www.dataschool.io/15-hours-of-expert-machine-learning-videos/)
+-   [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/) (`ESL`) by *Hastie et al.*: More theoretical introduction
+-   [Intuition for the Algorithms of Machine Learning](https://users.cs.duke.edu/~cynthia/teaching.html) (`IAML`) by *Rudin*: CS671 Textbook
+-   [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html) (`sklearn`): Very well written tutorials that teach the library and machine learning concepts
+-   [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/) (`CO`): Infinitely useful textbook about optimization
+
+## Outline {.smaller}
+
+-   What is Machine Learning?
+-   Types of Machine Learning
+    -   Supervised
+        -   Classification
+        -   Regression
+    -   Unsupervised
+        -   Clustering
+        -   Dimensionality Reduction
+-   Typical Machine Learning Pipeline w/ `scikit-learn`
+-   Pitfalls
 
 ## What is Machine Learning????
 
-::: {.r-stack}
+::: r-stack
 ![](images/0.png){.fragment}
 
 ![](images/1.png){.fragment}
@@ -52,6 +60,7 @@ execute:
 ![](images/8.png){.fragment}
 
 ![](images/9.png){.fragment}
+
 ![](images/10.png){.fragment}
 
 ![](images/11.png){.fragment}
@@ -61,108 +70,515 @@ execute:
 ![](images/13.png){.fragment}
 :::
 
-
-
-
-
 # Supervised Learning
 
-## Regression
+The *input* includes what the *output* should look like
 
-## Classification
+## Regression {.smaller}
+
+::: columns
+::: {.column width="55%"}
+![](./images/regression.png)
+:::
+
+::: {.column width="30%"}
+![](./isl_figures/Chapter2/2.3.png)
+:::
+:::
+
+::: columns
+::: {.column width="55%"}
+-   [Least Squares](https://scikit-learn.org/stable/modules/linear_model.html#ordinary-least-squares)
+-   [Ridge Regression](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression-and-classification)
+-   [LASSO](https://scikit-learn.org/stable/modules/linear_model.html#lasso)
+-   [Elastic-Net](https://scikit-learn.org/stable/modules/linear_model.html#elastic-net)
+-   [Decision Trees](https://scikit-learn.org/stable/modules/tree.html#regression)
+-   [Neural Networks](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#regression)
+:::
+
+::: {.column width="45%"}
+![](./isl_figures/Chapter2/2.2.png)
+:::
+:::
+
+::: footer
+`sklearn` [Chapter 1](https://scikit-learn.org/stable/supervised_learning.html#supervised-learning), `IAML` [Chapter 1.1](https://users.cs.duke.edu/~cynthia/CourseNotes/ConceptsOfLearningNotes.pdf), `ISL` [Chapter 2](https://www.statlearning.com/)
+:::
+
+## Classification {.smaller}
+
+::: columns
+::: {.column width="40%"}
+![](./images/classification.png)
+:::
+
+::: {.column width="20%"}
+:::
+
+::: {.column width="30%"}
+![](./isl_figures/Chapter2/2.13.png)
+:::
+:::
+
+::: columns
+::: {.column width="55%"}
+-   [Logistic Regression](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression)
+-   [Boosting](https://scikit-learn.org/stable/modules/ensemble.html#adaboost)
+-   [Decision Trees](https://scikit-learn.org/stable/modules/tree.html#classification)
+-   [Support Vector Machines](https://scikit-learn.org/stable/modules/svm.html#classification)
+-   [Neural Networks](https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification)
+-   [k-Nearest Neighbors](https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification)
+:::
+
+::: {.column width="45%"}
+![](./isl_figures/Chapter4/4.6.png)
+:::
+:::
+
+::: footer
+`sklearn` [Chapter 1](https://scikit-learn.org/stable/supervised_learning.html#supervised-learning), `IAML` [Chapter 1.1](https://users.cs.duke.edu/~cynthia/CourseNotes/ConceptsOfLearningNotes.pdf), `ISL` [Chapter 4](https://www.statlearning.com/)
+:::
+
+## Objective Functions {.smallerr}
+
+Many supervised methods can be fit by **optimizing** an objective function! By changing the loss function ($\ell$) and the regularization function ($R^{reg}$), different models are made with different strengths and weaknesses.
+
+$$ \sum_i \ell[f(x_i), y_i] + C R^{reg}(f)$$
+
+-   Least Squares: $\min_w \| Xw - y\|^2_2$
+-   Ridge: $\min_w \| Xw - y\|^2_2 + \alpha \|w\|^2_2$
+-   Lasso: $\min_w \| Xw - y\|^2_2 + \alpha \|w\|_1$
+-   Elastic-Net: $\min_w \| Xw - y\|^2_2 + \alpha \rho \|w\|_1 + \alpha(1-\rho)\|w\|^2_2$
+-   Logistic Regression: $\hat p(X_i) = \frac{1}{1 + \exp(-X_i w - w_0)}, \quad \min_w C \sum_{i=1}^n [y_i \log(\hat p (X_i)) - (1 - y_i)\log(1 - \hat p(X_i))]$
+-   (C-Support) SVM: $\min_{w, b, \xi} \frac{1}{2}|w|^2_2 + C \sum \xi_i,  s.t. y_i(w^\top \phi(x_i) + b) \geq 1 - \xi_i, \xi_i \geq 0, i=1,…,l$
+-   Basic 2-layer Neural Network: $f(\mathbf x) = \sigma\{\mathbf W_3^\top [\sigma(\mathbf W_2^\top\{\sigma[\mathbf W_1^\top \mathbf x + \mathbf b_1]\} + \mathbf b_2)] + b_3 \}$
+
+
+# Unsupervised
+
+Deriving helpful output from the input
+
+## Clustering 
+
+::: columns
+::: {.column width="50%"}
+![](./images/clustering2.png)
+:::
+
+
+::: {.column width="50%"}
+![](./images/clustering12.7.png)
+:::
+:::
+
+::: columns
+::: {.column width="55%"}
+-   [K-means](https://scikit-learn.org/stable/modules/clustering.html#k-means)
+-   [Spectral Clustering](https://scikit-learn.org/stable/modules/clustering.html#spectral-clustering)
+-   [Hierarchical Clustering](https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering)
+-   [Gaussian Mixture Models](https://scikit-learn.org/stable/modules/mixture.html#gaussian-mixture-models)
+:::
+
+::: {.column width="45%"}
+![](./isl_figures/Chapter4/4.6.png)
+:::
+:::
+
+::: footer
+`sklearn` [Chapter 2.3](https://scikit-learn.org/stable/modules/clustering.html), `IAML` [Chapter 10](https://users.cs.duke.edu/~cynthia/CourseNotes/Clustering.pdf), `ISL` [Chapter 10](https://www.statlearning.com/), `ESL` [14.3](https://hastie.su.domains/ElemStatLearn/), [Interactive Spectral Clustering](https://samgrosen.github.io/writings/two-truths)
+:::
+
+
+## Dimensionality Reduction {.smaller}
+
+
+::: columns
+::: {.column width="65%"}
+![](./images/mammoth.png)
+:::
+
+
+::: {.column width="35%"}
+![](./images/pca.png)
+:::
+:::
+
+-   [Spectral Embedding](https://scikit-learn.org/stable/modules/manifold.html#spectral-embedding)
+-   [t-SNE](https://scikit-learn.org/stable/modules/manifold.html#t-distributed-stochastic-neighbor-embedding-t-sne)
+-   [PaCMAP](https://github.com/YingfanWang/PaCMAP)
+-   [PCA](https://scikit-learn.org/stable/modules/decomposition.html#decomposing-signals-in-components-matrix-factorization-problems)
+
+
+
+
+::: footer
+`ISL` [Chapter 10](https://www.statlearning.com/), `IAML` [Chapter 8](https://users.cs.duke.edu/~cynthia/CourseNotes/DataVizLectureNotes.pdf),
+`ESL` [14.5](https://hastie.su.domains/ElemStatLearn/)
+:::
+
+
+## More Objective Functions
+
+* K-means: $\sum_i \min_k[ \operatorname{dist}(\mathbf x_i, \mathbf c_k)]$
+* Non-negative Matrix Factorization (`ESL 14.6`): $\max_{\mathbf W, \mathbf H} \sum_i \sum_j [x_{ij} \log(\mathbf{WH})_{ij} - (\mathbf{WH})_{ij}]$
+* Sparse Principal Components (`ESL 14.5.5`): $\max_v \ v^\top (\mathbf X^\top \mathbf X) v, \ s.t.\ \sum_i |v| \leq t, \ \|v\|^2_2 = 1$
+* Modularity (Undirected graphs): $\max_\mu \frac{1}{2m} \sum_{i,j} \left( A_{ij} - \frac{k_i k_j}{2m}\right)\delta(\mu_i, \mu_j)$
+
 
 
 
 # Pipeline
 
-## Data Ingest
+## Libraries
 
-## Data Cleaning
+Picking your technologies or libraries may be important depending on application.
 
-## Exploratory Data Analysis
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+import csv
+import sklearn
 
-## Feature Engineering
+# For teaching purposes
+pd.options.display.max_columns = None
 
-## Training and Cross-validation
+```
 
-## Evaluate 
+## Input, Output, Data Collection {.smaller}
 
-## Deployment
+[Review Sentiment Dataset](https://archive.ics.uci.edu/dataset/331/sentiment+labelled+sentences)
 
-## Adjustment
 
-# Unsupervised Learning
+```{python}
+websites = ["yelp", "imdb", "amazon_cells"]
+reviews = pd.DataFrame(columns = ['Review', 'Sentiment', 'Website'])
 
-## Clustering
+for website in websites:
+  data = pd.read_csv(f'./{website}_labelled.txt',
+                     sep='\t',
+                     names=["Review", "Sentiment"],
+                     quoting=csv.QUOTE_NONE)
+  data["Website"] = website
+  reviews = pd.concat([reviews, data], axis=0)
 
-## Data Mining
+reviews.reset_index(inplace=True, drop=True) 
 
-## Dimensionality Reduction
+print(reviews.head(1))
+print("Number of observations, columns:", reviews.shape)
+```
+
+-   You need data to do data analysis! This may be collected from web scraping, APIs, data repositories, etc.
+
+## Data Cleaning {.smaller}
+
+Data is often not in an ideal form for using `sklearn`. [^1]
+
+```{python}
+
+# Remove punctuation and make all letters lower case
+reviews["Cleaned"] = reviews["Review"].str.replace('[^\w\s]','')
+reviews["Cleaned"] = reviews["Cleaned"].str.lower()
+
+```
+
+[^1]: Modern NLP practices may not remove punctuation or capitalization as this could be useful information.
+
+## Exploratory Data Analysis {.smaller}
+
+
+```{python}
+#| fig-align: center
+
+reviews["Lengths"] = reviews["Review"].apply(lambda review: len(review.split()))
+
+sns.displot(reviews, x="Lengths", hue="Website", element="step")
+
+```
+
+## Feature Engineering {.smaller}
+
+* `sklearn` has a [preprocessing](https://scikit-learn.org/stable/modules/preprocessing.html) and [feature extraction](https://scikit-learn.org/stable/modules/feature_extraction.html) module ideal for modifying and creating features!
+* Let's create a feature for every word in the dataset, describing how often it appears in each review. This is a "bag-of-words" representation. [^1]
+
+```{python}
+from sklearn.feature_extraction.text import CountVectorizer
+
+count_vect = CountVectorizer()
+
+word_counts = count_vect.fit_transform(reviews["Cleaned"])
+print(word_counts.shape)
+print(list(count_vect.vocabulary_.items())[:10])
+
+```
+
+[^1]: Working with text data leads to many possible ways to do feature engineering. Instead of working with counts, we could work with [proportions](https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html#from-occurrences-to-frequencies), or proportions weighted by document. In addition, our data cleaning could have been done directly using [CountVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer).
 
 :::footer
-https://users.cs.duke.edu/~cynthia/CourseNotes/DataVizLectureNotes.pdf
+`ISL` [Chapter 10.4](https://www.statlearning.com/), `ESL` [Chapter 5.3](https://hastie.su.domains/ElemStatLearn/)
+
 :::
 
-# The Pipeline
+## Splitting into Training and Testing {.smaller}
 
-## Input, Output
+We want our model to generalize well for new predictions, so we should split it into a training set for building, and use a test set for final evaluation.
+
+```{python}
+from sklearn.model_selection import train_test_split
+
+# Not necessary for splitting but helpful for joining
+# our model results with the original data frame
+indices = np.arange(word_counts.shape[0])
+
+# What happens if our test set is too big?
+X_train, X_test, y_train, y_test, train_indices, test_indices = train_test_split(
+   word_counts, reviews["Website"], indices, test_size=0.3, random_state=0)
+```
+
+## Parameter Tuning {.smallerr}
+
+Logistic Regression is a standard baseline for classification problems. We should start basic. We will use an $\ell_1$ penalty to assist with having more features than data points and promote sparsity.
+
+$$ \hat p(X_i) = \frac{1}{1 + \exp(-X_i w - w_0)}, \quad \min_w C \sum_{i=1}^n [y_i \log(\hat p (X_i)) - (1 - y_i)\log(1 - \hat p(X_i))] + \|w\|_1 $$
+
+```{python}
+from sklearn import linear_model
+from sklearn.model_selection import GridSearchCV
+ 
+logistic = linear_model.LogisticRegression(solver="liblinear", penalty="l1")
+cv = GridSearchCV(logistic,
+                  [{"C": 2.0**np.arange(-6, 6)}],
+                  scoring="accuracy",
+                  refit=True)
+cv.fit(X_train, y_train)
+
+print(cv.best_estimator_.coef_.shape)
+print(cv.best_estimator_.classes_)
+print((np.count_nonzero(cv.best_estimator_.coef_, axis=1)))
+```
+
+:::footer
+`IAML` [Chapter 1.3](https://users.cs.duke.edu/~cynthia/CourseNotes/CrossValidationNotes.pdf), `ESL` [Chapter 7](https://hastie.su.domains/ElemStatLearn/), `ISL` [Chapter 5.1, 6](https://www.statlearning.com/)
+:::
+
+## Examine the Fit {.smallerr}
+
+```{python}
+most_important_words = np.argpartition(cv.best_estimator_.coef_, -20, axis=1)[:, -20:]
+
+index_to_word = count_vect.get_feature_names_out()
+
+for index, class_ in enumerate(cv.best_estimator_.classes_):
+  print(class_)
+  for word_index in most_important_words[index]:
+    print(index_to_word[word_index], 
+          round(cv.best_estimator_.coef_[index, word_index], 3), 
+          end=", ")
+  print("\n")
+
+```
+
+
+## Examine some Predictions {.smallest}
+
+```{python}
+# Use train dataset if trying to do model choice
+probs = cv.predict_proba(X_train)
+
+difficult_reviews = np.nonzero(np.std(probs, axis=1) < 0.2)
+print(reviews.loc[train_indices[difficult_reviews]]["Cleaned"])
+
+uncertain_reviews = np.nonzero(np.max(probs, axis=1) < 0.5)
+print(reviews.loc[train_indices[uncertain_reviews]]["Cleaned"])
+```
+
+## Evaluate {.smallerr}
+
+::: {.panel-tabset}
+
+### Metrics
+
+* [Accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html): Simplest metric, percent correct
+* [Precision](https://en.wikipedia.org/wiki/Precision_and_recall): If I predict $x$ probability I am correct
+* [Recall](https://en.wikipedia.org/wiki/Precision_and_recall): If the truth is $x$ probability I am correct
+* [f-Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html): Geometric mean of `precision` and `recall`, great for unbalanced classes
+
+```{python}
+from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
+
+train_conf_mat = confusion_matrix(y_train, cv.predict(X_train))
+test_conf_mat = confusion_matrix(y_test, cv.predict(X_test))
+
+test_precisions, test_recalls, test_fscores, _ = precision_recall_fscore_support(
+  y_test, cv.predict(X_test))
+
+train_precisions, train_recalls, train_fscores, _ = precision_recall_fscore_support(
+  y_train, cv.predict(X_train))
+  
+```
+
+### Visualize
+
+```{python}
+#| echo: False
+#| fig-align: center
+
+classes = cv.best_estimator_.classes_
+
+def zip_classes_w_nums(classes, nums):
+  return map(lambda c_n_pair: f"{c_n_pair[0]}\n({round(c_n_pair[1], 3)})",
+             zip(classes, nums))
+
+fig, (ax1, ax2) = plt.subplots(1, 2)
+im1 = ax1.imshow(train_conf_mat)
+im2 = ax2.imshow(test_conf_mat)
+# We want to show all ticks...
+ax1.set_xticks(np.arange(len(classes)))
+ax1.set_yticks(np.arange(len(classes)))
+ax2.set_xticks(np.arange(len(classes)))
+ax2.set_yticks(np.arange(len(classes)))
+# ... and label them with the respective list entries
+ax1.set_xticklabels(zip_classes_w_nums(classes, train_precisions))
+ax1.set_yticklabels(zip_classes_w_nums(classes, train_recalls))
+ax2.set_xticklabels(zip_classes_w_nums(classes, test_precisions))
+ax2.set_yticklabels(zip_classes_w_nums(classes, test_recalls))
+# Rotate the tick labels and set their alignment.
+plt.setp(ax1.get_xticklabels(), rotation=45, ha="right",
+         rotation_mode="anchor")
+plt.setp(ax2.get_xticklabels(), rotation=45, ha="right",
+         rotation_mode="anchor")
+# Loop over data dimensions and create text annotations.
+for i in range(len(classes)):
+    for j in range(len(classes)):
+        ax1.text(j, i, train_conf_mat[i, j],
+                        ha="center", va="center", color="w")
+        ax2.text(j, i, test_conf_mat[i, j],
+                        ha="center", va="center", color="w")
+
+ax1.set_title("Training Confusion Matrix")
+ax2.set_title("Test Confusion Matrix")
+
+ax1.set_xlabel("Predicted (Precision)")
+ax2.set_xlabel("Predicted (Precision)")
+ax1.set_ylabel("Actual (Recall)")
+
+fig.tight_layout()
+plt.show()
+
+```
+
+:::
+
+:::footer
+`sklearn` [Chapter 3.3](https://scikit-learn.org/stable/modules/model_evaluation.html)
+:::
+
+## Does a longer review help? {.smallerr}
+
+::: {.panel-tabset}
+
+### Joining Model and Data
+
+```{python}
+prediction_probs = cv.predict_proba(word_counts)
+reviews["Prediction"] = cv.predict(word_counts)
+
+for index, website in enumerate(cv.best_estimator_.classes_):
+  reviews[f"prob_{website}"] = prediction_probs[:, index]
+
+reviews["is_test"] = False
+reviews["is_correct"] = reviews["Prediction"] == reviews["Website"]
+reviews.loc[y_test.index, "is_test"] = True
+
+```
+
+### Visualization
+
+```{python}
+#| echo: False
+plt.clf()
+```
+
+```{python}
+#| fig-align: center
+
+test_set = reviews.query("is_test")
+percent_correct_by_length = test_set.groupby(
+  ["Lengths", "is_correct", "Website"]).agg("size") / test_set.groupby(
+    ["Lengths", "Website"]).agg("size")
+percent_correct_by_length = percent_correct_by_length.to_frame().reset_index()
+percent_correct_by_length.rename(columns={0: "Freq"}, inplace=True)
+
+g = sns.FacetGrid(percent_correct_by_length, col="Website", sharex=False)
+g.map_dataframe(sns.histplot, x="Lengths",
+    hue="is_correct",
+    multiple="stack",
+    weights="Freq",
+    discrete=1)
+```
+
+```{python}
+#| echo: False
+plt.show()
+
+```
+
+:::
 
 # Pitfalls
 
-:::footer
-See [Lones 2023](https://arxiv.org/abs/2108.02497)
-:::
+See [Lones 2023](https://arxiv.org/abs/2108.02497) for a great comprehensive overview.
 
 ## Overfitting {.smaller}
 
-* "All models are wrong, some are useful" - George Box
-* It's important for your models to generalize, and not just memorize the training data set
+-   "All models are wrong, some are useful" - George Box
+-   It's important for your models to generalize, and not just memorize the training data set
 
-![](images/overfit1.png){.absolute bottom=50 right=10 width="400" height="300"}
+![](images/overfit1.png){.absolute bottom="50" right="10" width="400" height="300"}
 
-![](images/overfit2.png){.absolute bottom=150 left=10 width="600" height="150"}
+![](images/overfit2.png){.absolute bottom="150" left="10" width="600" height="150"}
 
-
-:::footer
+::: footer
 See Intuition for the Algorithms of Machine Learning [Chapter 1.1](https://users.cs.duke.edu/~cynthia/CourseNotes/ConceptsOfLearningNotes.pdf)
 :::
 
 ## Bad Data / Fitting Artifacts {.smaller}
 
-* "If you torture data long enough, it will confess" - Ronald Coase
-* You may need *lots* of data to produce a good model particularly if your data is noisy
-* Sometimes machine learning algorithms can give arbitrary results if an algorithm used is not the right fit for the data
-  * See applying [t-SNE](https://stats.stackexchange.com/questions/263539/clustering-on-the-output-of-t-sne/264647#264647) (Dimensionality Reduction for Data Visualization) to Normal data
+-   You may need *lots* of data to produce a good model particularly if data is noisy
+-   Sometimes machine learning algorithms can give arbitrary results if an algorithm used is not the right choice for the data (see applying [t-SNE](https://stats.stackexchange.com/questions/263539/clustering-on-the-output-of-t-sne/264647#264647) to Normal data)
 
-![](images/clustering.png)
+![](images/clustering.png){fig-align="center"}
 
+## Fitting Issues {.smaller}
 
-## Training Issues
+-   You can have the perfect model choice for your data, but struggle to fit it!
+-   [Vanishing Gradient](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) is common with Neural Networks
+-   Optimization can be hard (NP-HARD to be precise) Ex: Sparse Ridge Regression
 
-* [Vanishing Gradient](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) is common with Neural Networks
-* Optimization can be hard
+$$ \min_{\boldsymbol \beta} \|\mathbf y - \mathbf X\boldsymbol \beta\|^2_2 + \lambda_2 \|\boldsymbol \beta\|^2_2\text{,  subject to  }  \|\boldsymbol \beta\|_0 \leq k$$
 
-![](images/sparse_ridge.png)
-* Too many hyperparameters
+-  Difficulty sampling a distribution (see STA602L)
+-  [Sensitivity to initial values](https://www.naftaliharris.com/blog/visualizing-k-means-clustering/)
+-  Too many hyperparameters, each added hyperparameter exponentially increases the total possible fits
 
 ## Feature Correlation / Colinearity
 
+* Many machine learning algorithms were developed just to deal with correlated features. Likewise, many algorithms have been proven to fail if the features are too correlated.
+* Check if your features are correlated using [`DataFrame.corr`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html). [Plot it too!](https://stackoverflow.com/questions/29432629/plot-correlation-matrix-using-pandas)
+
+
+::: footer
+`ISL` Chapter 3.6
+:::
 
 ## Curse of Dimensionality
 
-https://cookieblues.github.io/guides/2021/03/11/bsmalea-notes-1b/
+* Being immortal → Everyone is dead and the Sun is about to explode
+* More covariates for analysis → All my data points are significant
 
-## Learning
+* [Nice write-up](https://cookieblues.github.io/guides/2021/03/11/bsmalea-notes-1b/)
 
-If you want a more in-depth dive of this material, see these textbooks, but focusing on your courses is plenty sufficient.
-
-* [An Introduction to Statistical Learning](https://www.statlearning.com/): Friendlier introduction with plenty of code examples in `R`
-
-* [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/): More theoretical introduction
-
-* [Intuition for the Algorithms of Machine Learning](https://users.cs.duke.edu/~cynthia/teaching.html): CS671 Textbook
-
-* [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/): Infinitely useful textbook about optimization
-
-
-
+::: footer
+`ISL` Chapter 6.4.3, `ESL` Chapter 2.5, 18
+:::

@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="final_day_files/libs/revealjs/dist/theme/quarto.css">
   <link href="final_day_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -328,7 +393,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Incredibly Fast Rundown of Machine Learning and <code>scikit-learn</code></h1>
-  <p class="subtitle">With notes from <a href="https://users.cs.duke.edu/~cynthia/teaching.html"><em>Cynthia Rudin</em></a></p>
+  <p class="subtitle">With notes from <a href="https://users.cs.duke.edu/~cynthia/teaching.html"><em>Rudin</em></a>, <a href="https://hastie.su.domains/ElemStatLearn/"><em>Hastie et al.</em></a> and <a href="https://www.statlearning.com/"><em>James et al.</em></a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -339,7 +404,18 @@ Sam Rosen
 </div>
 
 </section>
-<section id="outline" class="slide level2">
+<section id="references-throughout" class="slide level2 smaller">
+<h2>References throughout</h2>
+<p>If you want a more in-depth dive of this material, see these materials, but focusing on your courses is plenty sufficient.</p>
+<ul>
+<li><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a> (<code>ISL</code>) by <em>James et al.</em>: Friendlier introduction with plenty of code examples in <code>R</code> or <code>Python</code>, STA521 Textbook. <a href="https://www.dataschool.io/15-hours-of-expert-machine-learning-videos/">Free Online Course</a></li>
+<li><a href="https://hastie.su.domains/ElemStatLearn/">The Elements of Statistical Learning</a> (<code>ESL</code>) by <em>Hastie et al.</em>: More theoretical introduction</li>
+<li><a href="https://users.cs.duke.edu/~cynthia/teaching.html">Intuition for the Algorithms of Machine Learning</a> (<code>IAML</code>) by <em>Rudin</em>: CS671 Textbook</li>
+<li><a href="https://scikit-learn.org/stable/user_guide.html">scikit-learn User Guide</a> (<code>sklearn</code>): Very well written tutorials that teach the library and machine learning concepts</li>
+<li><a href="https://web.stanford.edu/~boyd/cvxbook/">Convex Optimization</a> (<code>CO</code>): Infinitely useful textbook about optimization</li>
+</ul>
+</section>
+<section id="outline" class="slide level2 smaller">
 <h2>Outline</h2>
 <ul>
 <li>What is Machine Learning?</li>
@@ -353,13 +429,11 @@ Sam Rosen
 <li>Unsupervised
 <ul>
 <li>Clustering</li>
-<li>Data Mining</li>
 <li>Dimensionality Reduction</li>
 </ul></li>
 </ul></li>
-<li>Typical Machine Learning Pipeline w/ scikit-learn</li>
+<li>Typical Machine Learning Pipeline w/ <code>scikit-learn</code></li>
 <li>Pitfalls</li>
-<li>Resources</li>
 </ul>
 </section>
 <section id="what-is-machine-learning" class="slide level2">
@@ -374,7 +448,8 @@ Sam Rosen
 <p><img data-src="images/6.png" class="fragment"></p>
 <p><img data-src="images/7.png" class="fragment"></p>
 <p><img data-src="images/8.png" class="fragment"></p>
-<p><img data-src="images/9.png" class="fragment"> <img data-src="images/10.png" class="fragment"></p>
+<p><img data-src="images/9.png" class="fragment"></p>
+<p><img data-src="images/10.png" class="fragment"></p>
 <p><img data-src="images/11.png" class="fragment"></p>
 <p><img data-src="images/12.png" class="fragment"></p>
 <p><img data-src="images/13.png" class="fragment"></p>
@@ -383,74 +458,441 @@ Sam Rosen
 <section>
 <section id="supervised-learning" class="title-slide slide level1 center">
 <h1>Supervised Learning</h1>
-
+<p>The <em>input</em> includes what the <em>output</em> should look like</p>
 </section>
-<section id="regression" class="slide level2">
+<section id="regression" class="slide level2 smaller">
 <h2>Regression</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><img data-src="./images/regression.png"></p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="./isl_figures/Chapter2/2.3.png"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/linear_model.html#ordinary-least-squares">Least Squares</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression-and-classification">Ridge Regression</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/linear_model.html#lasso">LASSO</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/linear_model.html#elastic-net">Elastic-Net</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/tree.html#regression">Decision Trees</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/neural_networks_supervised.html#regression">Neural Networks</a></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="./isl_figures/Chapter2/2.2.png"></p>
+</div>
+</div>
+<div class="footer">
+<p><code>sklearn</code> <a href="https://scikit-learn.org/stable/supervised_learning.html#supervised-learning">Chapter 1</a>, <code>IAML</code> <a href="https://users.cs.duke.edu/~cynthia/CourseNotes/ConceptsOfLearningNotes.pdf">Chapter 1.1</a>, <code>ISL</code> <a href="https://www.statlearning.com/">Chapter 2</a></p>
+</div>
 </section>
-<section id="classification" class="slide level2">
+<section id="classification" class="slide level2 smaller">
 <h2>Classification</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="./images/classification.png"></p>
+</div><div class="column" style="width:20%;">
+
+</div><div class="column" style="width:30%;">
+<p><img data-src="./isl_figures/Chapter2/2.13.png"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression">Logistic Regression</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/ensemble.html#adaboost">Boosting</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/tree.html#classification">Decision Trees</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/svm.html#classification">Support Vector Machines</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/neural_networks_supervised.html#classification">Neural Networks</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification">k-Nearest Neighbors</a></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="./isl_figures/Chapter4/4.6.png"></p>
+</div>
+</div>
+<div class="footer">
+<p><code>sklearn</code> <a href="https://scikit-learn.org/stable/supervised_learning.html#supervised-learning">Chapter 1</a>, <code>IAML</code> <a href="https://users.cs.duke.edu/~cynthia/CourseNotes/ConceptsOfLearningNotes.pdf">Chapter 1.1</a>, <code>ISL</code> <a href="https://www.statlearning.com/">Chapter 4</a></p>
+</div>
+</section>
+<section id="objective-functions" class="slide level2 smallerr">
+<h2>Objective Functions</h2>
+<p>Many supervised methods can be fit by <strong>optimizing</strong> an objective function! By changing the loss function (<span class="math inline">\(\ell\)</span>) and the regularization function (<span class="math inline">\(R^{reg}\)</span>), different models are made with different strengths and weaknesses.</p>
+<p><span class="math display">\[ \sum_i \ell[f(x_i), y_i] + C R^{reg}(f)\]</span></p>
+<ul>
+<li>Least Squares: <span class="math inline">\(\min_w \| Xw - y\|^2_2\)</span></li>
+<li>Ridge: <span class="math inline">\(\min_w \| Xw - y\|^2_2 + \alpha \|w\|^2_2\)</span></li>
+<li>Lasso: <span class="math inline">\(\min_w \| Xw - y\|^2_2 + \alpha \|w\|_1\)</span></li>
+<li>Elastic-Net: <span class="math inline">\(\min_w \| Xw - y\|^2_2 + \alpha \rho \|w\|_1 + \alpha(1-\rho)\|w\|^2_2\)</span></li>
+<li>Logistic Regression: <span class="math inline">\(\hat p(X_i) = \frac{1}{1 + \exp(-X_i w - w_0)}, \quad \min_w C \sum_{i=1}^n [y_i \log(\hat p (X_i)) - (1 - y_i)\log(1 - \hat p(X_i))]\)</span></li>
+<li>(C-Support) SVM: <span class="math inline">\(\min_{w, b, \xi} \frac{1}{2}|w|^2_2 + C \sum \xi_i, &nbsp;s.t.&nbsp;y_i(w^\top \phi(x_i) + b) \geq 1 - \xi_i,&nbsp;\xi_i \geq 0,&nbsp;i=1,…,l\)</span></li>
+<li>Basic 2-layer Neural Network: <span class="math inline">\(f(\mathbf x) = \sigma\{\mathbf W_3^\top [\sigma(\mathbf W_2^\top\{\sigma[\mathbf W_1^\top \mathbf x + \mathbf b_1]\} + \mathbf b_2)] + b_3 \}\)</span></li>
+</ul>
+</section></section>
+<section>
+<section id="unsupervised" class="title-slide slide level1 center">
+<h1>Unsupervised</h1>
+<p>Deriving helpful output from the input</p>
+</section>
+<section id="clustering" class="slide level2">
+<h2>Clustering</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="./images/clustering2.png"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="./images/clustering12.7.png"></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/clustering.html#k-means">K-means</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/clustering.html#spectral-clustering">Spectral Clustering</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering">Hierarchical Clustering</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/mixture.html#gaussian-mixture-models">Gaussian Mixture Models</a></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="./isl_figures/Chapter4/4.6.png"></p>
+</div>
+</div>
+<div class="footer">
+<p><code>sklearn</code> <a href="https://scikit-learn.org/stable/modules/clustering.html">Chapter 2.3</a>, <code>IAML</code> <a href="https://users.cs.duke.edu/~cynthia/CourseNotes/Clustering.pdf">Chapter 10</a>, <code>ISL</code> <a href="https://www.statlearning.com/">Chapter 10</a>, <code>ESL</code> <a href="https://hastie.su.domains/ElemStatLearn/">14.3</a>, <a href="https://samgrosen.github.io/writings/two-truths">Interactive Spectral Clustering</a></p>
+</div>
+</section>
+<section id="dimensionality-reduction" class="slide level2 smaller">
+<h2>Dimensionality Reduction</h2>
+<div class="columns">
+<div class="column" style="width:65%;">
+<p><img data-src="./images/mammoth.png"></p>
+</div><div class="column" style="width:35%;">
+<p><img data-src="./images/pca.png"></p>
+</div>
+</div>
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/manifold.html#spectral-embedding">Spectral Embedding</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/manifold.html#t-distributed-stochastic-neighbor-embedding-t-sne">t-SNE</a></li>
+<li><a href="https://github.com/YingfanWang/PaCMAP">PaCMAP</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/decomposition.html#decomposing-signals-in-components-matrix-factorization-problems">PCA</a></li>
+</ul>
+<div class="footer">
+<p><code>ISL</code> <a href="https://www.statlearning.com/">Chapter 10</a>, <code>IAML</code> <a href="https://users.cs.duke.edu/~cynthia/CourseNotes/DataVizLectureNotes.pdf">Chapter 8</a>, <code>ESL</code> <a href="https://hastie.su.domains/ElemStatLearn/">14.5</a></p>
+</div>
+</section>
+<section id="more-objective-functions" class="slide level2">
+<h2>More Objective Functions</h2>
+<ul>
+<li>K-means: <span class="math inline">\(\sum_i \min_k[ \operatorname{dist}(\mathbf x_i, \mathbf c_k)]\)</span></li>
+<li>Non-negative Matrix Factorization (<code>ESL 14.6</code>): <span class="math inline">\(\max_{\mathbf W, \mathbf H} \sum_i \sum_j [x_{ij} \log(\mathbf{WH})_{ij} - (\mathbf{WH})_{ij}]\)</span></li>
+<li>Sparse Principal Components (<code>ESL 14.5.5</code>): <span class="math inline">\(\max_v \ v^\top (\mathbf X^\top \mathbf X) v, \ s.t.\ \sum_i |v| \leq t, \ \|v\|^2_2 = 1\)</span></li>
+<li>Modularity (Undirected graphs): <span class="math inline">\(\max_\mu \frac{1}{2m} \sum_{i,j} \left( A_{ij} - \frac{k_i k_j}{2m}\right)\delta(\mu_i, \mu_j)\)</span></li>
+</ul>
 </section></section>
 <section>
 <section id="pipeline" class="title-slide slide level1 center">
 <h1>Pipeline</h1>
 
 </section>
-<section id="data-ingest" class="slide level2">
-<h2>Data Ingest</h2>
-</section>
-<section id="data-cleaning" class="slide level2">
-<h2>Data Cleaning</h2>
-</section>
-<section id="exploratory-data-analysis" class="slide level2">
-<h2>Exploratory Data Analysis</h2>
-</section>
-<section id="feature-engineering" class="slide level2">
-<h2>Feature Engineering</h2>
-</section>
-<section id="training-and-cross-validation" class="slide level2">
-<h2>Training and Cross-validation</h2>
-</section>
-<section id="evaluate" class="slide level2">
-<h2>Evaluate</h2>
-</section>
-<section id="deployment" class="slide level2">
-<h2>Deployment</h2>
-</section>
-<section id="adjustment" class="slide level2">
-<h2>Adjustment</h2>
-</section></section>
-<section>
-<section id="unsupervised-learning" class="title-slide slide level1 center">
-<h1>Unsupervised Learning</h1>
-
-</section>
-<section id="clustering" class="slide level2">
-<h2>Clustering</h2>
-</section>
-<section id="data-mining" class="slide level2">
-<h2>Data Mining</h2>
-</section>
-<section id="dimensionality-reduction" class="slide level2">
-<h2>Dimensionality Reduction</h2>
-<div class="footer">
-<p>https://users.cs.duke.edu/~cynthia/CourseNotes/DataVizLectureNotes.pdf</p>
+<section id="libraries" class="slide level2">
+<h2>Libraries</h2>
+<p>Picking your technologies or libraries may be important depending on application.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> csv</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="im">import</span> sklearn</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># For teaching purposes</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>pd.options.display.max_columns <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section>
-<section>
-<section id="the-pipeline" class="title-slide slide level1 center">
-<h1>The Pipeline</h1>
-
 </section>
-<section id="input-output" class="slide level2">
-<h2>Input, Output</h2>
+<section id="input-output-data-collection" class="slide level2 smaller">
+<h2>Input, Output, Data Collection</h2>
+<p><a href="https://archive.ics.uci.edu/dataset/331/sentiment+labelled+sentences">Review Sentiment Dataset</a></p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>websites <span class="op">=</span> [<span class="st">"yelp"</span>, <span class="st">"imdb"</span>, <span class="st">"amazon_cells"</span>]</span>
+<span id="cb2-2"><a href="#cb2-2"></a>reviews <span class="op">=</span> pd.DataFrame(columns <span class="op">=</span> [<span class="st">'Review'</span>, <span class="st">'Sentiment'</span>, <span class="st">'Website'</span>])</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="cf">for</span> website <span class="kw">in</span> websites:</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  data <span class="op">=</span> pd.read_csv(<span class="ss">f'./</span><span class="sc">{</span>website<span class="sc">}</span><span class="ss">_labelled.txt'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>                     sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>                     names<span class="op">=</span>[<span class="st">"Review"</span>, <span class="st">"Sentiment"</span>],</span>
+<span id="cb2-8"><a href="#cb2-8"></a>                     quoting<span class="op">=</span>csv.QUOTE_NONE)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  data[<span class="st">"Website"</span>] <span class="op">=</span> website</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  reviews <span class="op">=</span> pd.concat([reviews, data], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>reviews.reset_index(inplace<span class="op">=</span><span class="va">True</span>, drop<span class="op">=</span><span class="va">True</span>) </span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="bu">print</span>(reviews.head(<span class="dv">1</span>))</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="bu">print</span>(<span class="st">"Number of observations, columns:"</span>, reviews.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     Review Sentiment Website
+0  Wow... Loved this place.         1    yelp
+Number of observations, columns: (3000, 3)</code></pre>
+</div>
+</div>
+<ul>
+<li>You need data to do data analysis! This may be collected from web scraping, APIs, data repositories, etc.</li>
+</ul>
+</section>
+<section id="data-cleaning" class="slide level2 smaller">
+<h2>Data Cleaning</h2>
+<p>Data is often not in an ideal form for using <code>sklearn</code>. <sup>1</sup></p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Remove punctuation and make all letters lower case</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>reviews[<span class="st">"Cleaned"</span>] <span class="op">=</span> reviews[<span class="st">"Review"</span>].<span class="bu">str</span>.replace(<span class="st">'[^\w\s]'</span>,<span class="st">''</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>reviews[<span class="st">"Cleaned"</span>] <span class="op">=</span> reviews[<span class="st">"Cleaned"</span>].<span class="bu">str</span>.lower()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Working with text data leads to many possible ways to do feature engineering. Instead of working with counts, we could work with <a href="https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html#from-occurrences-to-frequencies">proportions</a>, or proportions weighted by document. In addition, our data cleaning could have been done directly using <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer">CountVectorizer</a>.</p></li></ol></aside></section>
+<section id="exploratory-data-analysis" class="slide level2 smaller">
+<h2>Exploratory Data Analysis</h2>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>reviews[<span class="st">"Lengths"</span>] <span class="op">=</span> reviews[<span class="st">"Review"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> review: <span class="bu">len</span>(review.split()))</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>sns.displot(reviews, x<span class="op">=</span><span class="st">"Lengths"</span>, hue<span class="op">=</span><span class="st">"Website"</span>, element<span class="op">=</span><span class="st">"step"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="final_day_files/figure-revealjs/cell-5-output-1.png" width="616" height="470"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-engineering" class="slide level2 smaller">
+<h2>Feature Engineering</h2>
+<ul>
+<li><code>sklearn</code> has a <a href="https://scikit-learn.org/stable/modules/preprocessing.html">preprocessing</a> and <a href="https://scikit-learn.org/stable/modules/feature_extraction.html">feature extraction</a> module ideal for modifying and creating features!</li>
+<li>Let’s create a feature for every word in the dataset, describing how often it appears in each review. This is a “bag-of-words” representation. <sup>1</sup></li>
+</ul>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a>count_vect <span class="op">=</span> CountVectorizer()</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>word_counts <span class="op">=</span> count_vect.fit_transform(reviews[<span class="st">"Cleaned"</span>])</span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="bu">print</span>(word_counts.shape)</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="bu">print</span>(<span class="bu">list</span>(count_vect.vocabulary_.items())[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(3000, 5377)
+[('wow', 5327), ('loved', 2808), ('this', 4738), ('place', 3499), ('crust', 1163), ('is', 2516), ('not', 3192), ('good', 2066), ('tasty', 4658), ('and', 234)]</code></pre>
+</div>
+</div>
+<div class="footer">
+<p><code>ISL</code> <a href="https://www.statlearning.com/">Chapter 10.4</a>, <code>ESL</code> <a href="https://hastie.su.domains/ElemStatLearn/">Chapter 5.3</a></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Working with text data leads to many possible ways to do feature engineering. Instead of working with counts, we could work with <a href="https://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html#from-occurrences-to-frequencies">proportions</a>, or proportions weighted by document. In addition, our data cleaning could have been done directly using <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer">CountVectorizer</a>.</p></li></ol></aside></section>
+<section id="splitting-into-training-and-testing" class="slide level2 smaller">
+<h2>Splitting into Training and Testing</h2>
+<p>We want our model to generalize well for new predictions, so we should split it into a training set for building, and use a test set for final evaluation.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co"># Not necessary for splitting but helpful for joining</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># our model results with the original data frame</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>indices <span class="op">=</span> np.arange(word_counts.shape[<span class="dv">0</span>])</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># What happens if our test set is too big?</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>X_train, X_test, y_train, y_test, train_indices, test_indices <span class="op">=</span> train_test_split(</span>
+<span id="cb8-9"><a href="#cb8-9"></a>   word_counts, reviews[<span class="st">"Website"</span>], indices, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="parameter-tuning" class="slide level2 smallerr">
+<h2>Parameter Tuning</h2>
+<p>Logistic Regression is a standard baseline for classification problems. We should start basic. We will use an <span class="math inline">\(\ell_1\)</span> penalty to assist with having more features than data points and promote sparsity.</p>
+<p><span class="math display">\[ \hat p(X_i) = \frac{1}{1 + \exp(-X_i w - w_0)}, \quad \min_w C \sum_{i=1}^n [y_i \log(\hat p (X_i)) - (1 - y_i)\log(1 - \hat p(X_i))] + \|w\|_1 \]</span></p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">from</span> sklearn <span class="im">import</span> linear_model</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb9-3"><a href="#cb9-3"></a> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>logistic <span class="op">=</span> linear_model.LogisticRegression(solver<span class="op">=</span><span class="st">"liblinear"</span>, penalty<span class="op">=</span><span class="st">"l1"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>cv <span class="op">=</span> GridSearchCV(logistic,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>                  [{<span class="st">"C"</span>: <span class="fl">2.0</span><span class="op">**</span>np.arange(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>)}],</span>
+<span id="cb9-7"><a href="#cb9-7"></a>                  scoring<span class="op">=</span><span class="st">"accuracy"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>                  refit<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-9"><a href="#cb9-9"></a>cv.fit(X_train, y_train)</span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="bu">print</span>(cv.best_estimator_.coef_.shape)</span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="bu">print</span>(cv.best_estimator_.classes_)</span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="bu">print</span>((np.count_nonzero(cv.best_estimator_.coef_, axis<span class="op">=</span><span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(3, 5377)
+['amazon_cells' 'imdb' 'yelp']
+[617 566 562]</code></pre>
+</div>
+</div>
+<div class="footer">
+<p><code>IAML</code> <a href="https://users.cs.duke.edu/~cynthia/CourseNotes/CrossValidationNotes.pdf">Chapter 1.3</a>, <code>ESL</code> <a href="https://hastie.su.domains/ElemStatLearn/">Chapter 7</a>, <code>ISL</code> <a href="https://www.statlearning.com/">Chapter 5.1, 6</a></p>
+</div>
+</section>
+<section id="examine-the-fit" class="slide level2 smallerr">
+<h2>Examine the Fit</h2>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>most_important_words <span class="op">=</span> np.argpartition(cv.best_estimator_.coef_, <span class="op">-</span><span class="dv">20</span>, axis<span class="op">=</span><span class="dv">1</span>)[:, <span class="op">-</span><span class="dv">20</span>:]</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>index_to_word <span class="op">=</span> count_vect.get_feature_names_out()</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="cf">for</span> index, class_ <span class="kw">in</span> <span class="bu">enumerate</span>(cv.best_estimator_.classes_):</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="bu">print</span>(class_)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="cf">for</span> word_index <span class="kw">in</span> most_important_words[index]:</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="bu">print</span>(index_to_word[word_index], </span>
+<span id="cb11-9"><a href="#cb11-9"></a>          <span class="bu">round</span>(cv.best_estimator_.coef_[index, word_index], <span class="dv">3</span>), </span>
+<span id="cb11-10"><a href="#cb11-10"></a>          end<span class="op">=</span><span class="st">", "</span>)</span>
+<span id="cb11-11"><a href="#cb11-11"></a>  <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>amazon_cells
+voice 4.209, trouble 4.394, quality 4.405, reception 4.66, drop 5.62, shipping 4.696, battery 6.153, plug 8.963, headset 5.897, product 5.759, software 5.168, colors 4.775, phone 8.103, investment 5.946, ear 5.086, case 4.723, instructions 4.841, volume 5.653, works 4.664, sending 6.142, 
+
+imdb
+scenes 4.375, films 4.395, whatever 4.67, god 4.581, movies 4.696, watch 4.775, dialogue 4.707, viewing 4.724, acting 4.847, movie 8.547, game 5.47, characters 5.364, ending 5.19, character 6.033, theater 6.039, plot 5.775, script 4.952, film 8.449, whiny 5.171, cast 5.395, 
+
+yelp
+atmosphere 4.383, pho 4.429, staff 4.695, eat 5.812, dish 6.53, check 5.111, pasta 4.843, flavor 5.637, chicken 4.518, chips 4.404, breakfast 4.562, food 6.44, sick 5.261, pizza 4.912, place 5.909, mid 4.946, management 5.176, restaurant 5.945, delicious 4.941, meat 6.976, 
+</code></pre>
+</div>
+</div>
+</section>
+<section id="examine-some-predictions" class="slide level2 smallest">
+<h2>Examine some Predictions</h2>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Use train dataset if trying to do model choice</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>probs <span class="op">=</span> cv.predict_proba(X_train)</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a>difficult_reviews <span class="op">=</span> np.nonzero(np.std(probs, axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.2</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="bu">print</span>(reviews.loc[train_indices[difficult_reviews]][<span class="st">"Cleaned"</span>])</span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a>uncertain_reviews <span class="op">=</span> np.nonzero(np.<span class="bu">max</span>(probs, axis<span class="op">=</span><span class="dv">1</span>) <span class="op">&lt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="bu">print</span>(reviews.loc[train_indices[uncertain_reviews]][<span class="st">"Cleaned"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1837                         dont waste your time  
+2201    all in all i think it was a good investment
+1188                  nothing at all to recommend  
+479                                      i loved it
+1234                       do not waste your time  
+2483                             you wont regret it
+1992             lange had become a great actress  
+1694                           you wont regret it  
+265                           plus its only 8 bucks
+1585                              not recommended  
+1407                i couldnt take them seriously  
+409                             total waste of time
+1133            all in all a great disappointment  
+400             this one is simply a disappointment
+470                                very good though
+2783                                it was horrible
+2146                           what a waste of time
+1155                                     horrible  
+2930                                   never got it
+Name: Cleaned, dtype: object
+2037             poor talk time performance
+1837                 dont waste your time  
+1234               do not waste your time  
+1585                      not recommended  
+2907                     how stupid is that
+400     this one is simply a disappointment
+1155                             horrible  
+Name: Cleaned, dtype: object</code></pre>
+</div>
+</div>
+</section>
+<section id="evaluate" class="slide level2 smallerr">
+<h2>Evaluate</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Metrics</a></li><li><a href="#tabset-1-2">Visualize</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<ul>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html">Accuracy</a>: Simplest metric, percent correct</li>
+<li><a href="https://en.wikipedia.org/wiki/Precision_and_recall">Precision</a>: If I predict <span class="math inline">\(x\)</span> probability I am correct</li>
+<li><a href="https://en.wikipedia.org/wiki/Precision_and_recall">Recall</a>: If the truth is <span class="math inline">\(x\)</span> probability I am correct</li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html">f-Score</a>: Geometric mean of <code>precision</code> and <code>recall</code>, great for unbalanced classes</li>
+</ul>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, precision_recall_fscore_support</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>train_conf_mat <span class="op">=</span> confusion_matrix(y_train, cv.predict(X_train))</span>
+<span id="cb15-4"><a href="#cb15-4"></a>test_conf_mat <span class="op">=</span> confusion_matrix(y_test, cv.predict(X_test))</span>
+<span id="cb15-5"><a href="#cb15-5"></a></span>
+<span id="cb15-6"><a href="#cb15-6"></a>test_precisions, test_recalls, test_fscores, _ <span class="op">=</span> precision_recall_fscore_support(</span>
+<span id="cb15-7"><a href="#cb15-7"></a>  y_test, cv.predict(X_test))</span>
+<span id="cb15-8"><a href="#cb15-8"></a></span>
+<span id="cb15-9"><a href="#cb15-9"></a>train_precisions, train_recalls, train_fscores, _ <span class="op">=</span> precision_recall_fscore_support(</span>
+<span id="cb15-10"><a href="#cb15-10"></a>  y_train, cv.predict(X_train))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="final_day_files/figure-revealjs/cell-12-output-1.png" width="949" height="499"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+<p><code>sklearn</code> <a href="https://scikit-learn.org/stable/modules/model_evaluation.html">Chapter 3.3</a></p>
+</div>
+</section>
+<section id="does-a-longer-review-help" class="slide level2 smallerr">
+<h2>Does a longer review help?</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Joining Model and Data</a></li><li><a href="#tabset-2-2">Visualization</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>prediction_probs <span class="op">=</span> cv.predict_proba(word_counts)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>reviews[<span class="st">"Prediction"</span>] <span class="op">=</span> cv.predict(word_counts)</span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="cf">for</span> index, website <span class="kw">in</span> <span class="bu">enumerate</span>(cv.best_estimator_.classes_):</span>
+<span id="cb16-5"><a href="#cb16-5"></a>  reviews[<span class="ss">f"prob_</span><span class="sc">{</span>website<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> prediction_probs[:, index]</span>
+<span id="cb16-6"><a href="#cb16-6"></a></span>
+<span id="cb16-7"><a href="#cb16-7"></a>reviews[<span class="st">"is_test"</span>] <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>reviews[<span class="st">"is_correct"</span>] <span class="op">=</span> reviews[<span class="st">"Prediction"</span>] <span class="op">==</span> reviews[<span class="st">"Website"</span>]</span>
+<span id="cb16-9"><a href="#cb16-9"></a>reviews.loc[y_test.index, <span class="st">"is_test"</span>] <span class="op">=</span> <span class="va">True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 960x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>test_set <span class="op">=</span> reviews.query(<span class="st">"is_test"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>percent_correct_by_length <span class="op">=</span> test_set.groupby(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>  [<span class="st">"Lengths"</span>, <span class="st">"is_correct"</span>, <span class="st">"Website"</span>]).agg(<span class="st">"size"</span>) <span class="op">/</span> test_set.groupby(</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    [<span class="st">"Lengths"</span>, <span class="st">"Website"</span>]).agg(<span class="st">"size"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5"></a>percent_correct_by_length <span class="op">=</span> percent_correct_by_length.to_frame().reset_index()</span>
+<span id="cb18-6"><a href="#cb18-6"></a>percent_correct_by_length.rename(columns<span class="op">=</span>{<span class="dv">0</span>: <span class="st">"Freq"</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a>g <span class="op">=</span> sns.FacetGrid(percent_correct_by_length, col<span class="op">=</span><span class="st">"Website"</span>, sharex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-9"><a href="#cb18-9"></a>g.map_dataframe(sns.histplot, x<span class="op">=</span><span class="st">"Lengths"</span>,</span>
+<span id="cb18-10"><a href="#cb18-10"></a>    hue<span class="op">=</span><span class="st">"is_correct"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11"></a>    multiple<span class="op">=</span><span class="st">"stack"</span>,</span>
+<span id="cb18-12"><a href="#cb18-12"></a>    weights<span class="op">=</span><span class="st">"Freq"</span>,</span>
+<span id="cb18-13"><a href="#cb18-13"></a>    discrete<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="final_day_files/figure-revealjs/cell-15-output-1.png" width="854" height="278"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="pitfalls" class="title-slide slide level1 center">
 <h1>Pitfalls</h1>
-<div class="footer">
-<p>See <a href="https://arxiv.org/abs/2108.02497">Lones 2023</a></p>
-</div>
+<p>See <a href="https://arxiv.org/abs/2108.02497">Lones 2023</a> for a great comprehensive overview.</p>
 </section>
 <section id="overfitting" class="slide level2 smaller">
 <h2>Overfitting</h2>
@@ -467,43 +909,50 @@ Sam Rosen
 <section id="bad-data-fitting-artifacts" class="slide level2 smaller">
 <h2>Bad Data / Fitting Artifacts</h2>
 <ul>
-<li>“If you torture data long enough, it will confess” - Ronald Coase</li>
-<li>You may need <em>lots</em> of data to produce a good model particularly if your data is noisy</li>
-<li>Sometimes machine learning algorithms can give arbitrary results if an algorithm used is not the right fit for the data
-<ul>
-<li>See applying <a href="https://stats.stackexchange.com/questions/263539/clustering-on-the-output-of-t-sne/264647#264647">t-SNE</a> (Dimensionality Reduction for Data Visualization) to Normal data</li>
-</ul></li>
+<li>You may need <em>lots</em> of data to produce a good model particularly if data is noisy</li>
+<li>Sometimes machine learning algorithms can give arbitrary results if an algorithm used is not the right choice for the data (see applying <a href="https://stats.stackexchange.com/questions/263539/clustering-on-the-output-of-t-sne/264647#264647">t-SNE</a> to Normal data)</li>
 </ul>
 
-<img data-src="images/clustering.png" class="r-stretch"></section>
-<section id="training-issues" class="slide level2">
-<h2>Training Issues</h2>
+<img data-src="images/clustering.png" class="r-stretch quarto-figure-center"></section>
+<section id="fitting-issues" class="slide level2 smaller">
+<h2>Fitting Issues</h2>
 <ul>
+<li>You can have the perfect model choice for your data, but struggle to fit it!</li>
 <li><a href="https://en.wikipedia.org/wiki/Vanishing_gradient_problem">Vanishing Gradient</a> is common with Neural Networks</li>
-<li>Optimization can be hard</li>
+<li>Optimization can be hard (NP-HARD to be precise) Ex: Sparse Ridge Regression</li>
 </ul>
-<p><img data-src="images/sparse_ridge.png"> * Too many hyperparameters</p>
+<p><span class="math display">\[ \min_{\boldsymbol \beta} \|\mathbf y - \mathbf X\boldsymbol \beta\|^2_2 + \lambda_2 \|\boldsymbol \beta\|^2_2\text{,  subject to  }  \|\boldsymbol \beta\|_0 \leq k\]</span></p>
+<ul>
+<li>Difficulty sampling a distribution (see STA602L)</li>
+<li><a href="https://www.naftaliharris.com/blog/visualizing-k-means-clustering/">Sensitivity to initial values</a></li>
+<li>Too many hyperparameters, each added hyperparameter exponentially increases the total possible fits</li>
+</ul>
 </section>
 <section id="feature-correlation-colinearity" class="slide level2">
 <h2>Feature Correlation / Colinearity</h2>
+<ul>
+<li>Many machine learning algorithms were developed just to deal with correlated features. Likewise, many algorithms have been proven to fail if the features are too correlated.</li>
+<li>Check if your features are correlated using <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"><code>DataFrame.corr</code></a>. <a href="https://stackoverflow.com/questions/29432629/plot-correlation-matrix-using-pandas">Plot it too!</a></li>
+</ul>
+<div class="footer">
+<p><code>ISL</code> Chapter 3.6</p>
+</div>
 </section>
 <section id="curse-of-dimensionality" class="slide level2">
 <h2>Curse of Dimensionality</h2>
-<p>https://cookieblues.github.io/guides/2021/03/11/bsmalea-notes-1b/</p>
-</section>
-<section id="learning" class="slide level2">
-<h2>Learning</h2>
-<p>If you want a more in-depth dive of this material, see these textbooks, but focusing on your courses is plenty sufficient.</p>
 <ul>
-<li><p><a href="https://www.statlearning.com/">An Introduction to Statistical Learning</a>: Friendlier introduction with plenty of code examples in <code>R</code></p></li>
-<li><p><a href="https://hastie.su.domains/ElemStatLearn/">The Elements of Statistical Learning</a>: More theoretical introduction</p></li>
-<li><p><a href="https://users.cs.duke.edu/~cynthia/teaching.html">Intuition for the Algorithms of Machine Learning</a>: CS671 Textbook</p></li>
-<li><p><a href="https://web.stanford.edu/~boyd/cvxbook/">Convex Optimization</a>: Infinitely useful textbook about optimization</p></li>
+<li><p>Being immortal → Everyone is dead and the Sun is about to explode</p></li>
+<li><p>More covariates for analysis → All my data points are significant</p></li>
+<li><p><a href="https://cookieblues.github.io/guides/2021/03/11/bsmalea-notes-1b/">Nice write-up</a></p></li>
 </ul>
+<div class="footer">
+<p><code>ISL</code> Chapter 6.4.3, <code>ESL</code> Chapter 2.5, 18</p>
+</div>
 <div class="footer footer-default">
 
 </div>
 </section></section>
+
     </div>
   </div>
 
