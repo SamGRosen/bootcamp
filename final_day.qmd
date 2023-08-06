@@ -82,7 +82,7 @@ The *input* includes what the *output* should look like
 :::
 
 ::: {.column width="30%"}
-![](./isl_figures/Chapter2/2.3.png)
+![](./images/2.3.png)
 :::
 :::
 
@@ -97,7 +97,7 @@ The *input* includes what the *output* should look like
 :::
 
 ::: {.column width="45%"}
-![](./isl_figures/Chapter2/2.2.png)
+![](./images/2.2.png)
 :::
 :::
 
@@ -116,7 +116,7 @@ The *input* includes what the *output* should look like
 :::
 
 ::: {.column width="30%"}
-![](./isl_figures/Chapter2/2.13.png)
+![](./images/2.13.png)
 :::
 :::
 
@@ -131,7 +131,7 @@ The *input* includes what the *output* should look like
 :::
 
 ::: {.column width="45%"}
-![](./isl_figures/Chapter4/4.6.png)
+![](./images/4.6.png)
 :::
 :::
 
@@ -180,7 +180,7 @@ Deriving helpful output from the input
 :::
 
 ::: {.column width="45%"}
-![](./isl_figures/Chapter4/4.6.png)
+![](./images/4.6.png)
 :::
 :::
 
