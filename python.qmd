@@ -5,9 +5,8 @@ author:
   - Sam Rosen
 format:
   revealjs: 
+    self-contained: true
     slide-number: true
-    chalkboard: 
-      buttons: false
     preview-links: auto
     theme: theme.scss
 execute:

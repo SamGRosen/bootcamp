@@ -4,10 +4,9 @@ subtitle: "With notes from [*Rudin*](https://users.cs.duke.edu/~cynthia/teaching
 author:
   - Sam Rosen
 format:
-  revealjs: 
+  revealjs:
+    self-contained: true
     slide-number: true
-    chalkboard: 
-      buttons: false
     preview-links: auto
     theme: theme.scss
 execute:
