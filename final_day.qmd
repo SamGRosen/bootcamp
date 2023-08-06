@@ -256,7 +256,7 @@ websites = ["yelp", "imdb", "amazon_cells"]
 reviews = pd.DataFrame(columns = ['Review', 'Sentiment', 'Website'])
 
 for website in websites:
-  data = pd.read_csv(f'./{website}_labelled.txt',
+  data = pd.read_csv(f'./reviews/{website}_labelled.txt',
                      sep='\t',
                      names=["Review", "Sentiment"],
                      quoting=csv.QUOTE_NONE)
