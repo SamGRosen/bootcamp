@@ -582,3 +582,8 @@ $$ \min_{\boldsymbol \beta} \|\mathbf y - \mathbf X\boldsymbol \beta\|^2_2 + \la
 ::: footer
 `ISL` Chapter 6.4.3, `ESL` Chapter 2.5, 18
 :::
+
+## FlipFlop
+
+[FlipFlop](https://colab.research.google.com/drive/14FGOLjZkUzSq5c9pHAklMWoEaI7mZvdU?usp=sharing)
+

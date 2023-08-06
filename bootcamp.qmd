@@ -868,6 +868,8 @@ class LinkedList:
 * **KD Trees**: Generalization of Binary Search Trees to multiple dimensions. Incredibly useful in Data Science and Computer Graphics.
 * [And many more...](https://www.bigocheatsheet.com/) (I have personally only directly used the ones previously listed)
 
+# Some Challenges
+
 ## **Example:** [Repeated DNA Sequences](https://leetcode.com/problems/repeated-dna-sequences/) {.smaller}
 
 The DNA sequence is composed of a series of nucleotides abbreviated as `'A'`, `'C'`, `'G'`, and `'T'`.
@@ -987,3 +989,6 @@ In summary: Pick a field/discipline you are most interested in, find some listin
 -  [Open Data Structures](https://opendatastructures.org/)
 -  [A Practical Guide to Quantitative Finance Interviews](https://github.com/geniayuan/datasciencecoursera/blob/master/%5BXinfeng%20Zhou%5DA%20practical%20Guide%20to%20quantitative%20finance%20interviews.pdf)
 
+## Exercises
+
+[Colab](https://colab.research.google.com/drive/1eoxCBJErChn4Fr7RDuiCss2FIRr54MIq?usp=sharing)

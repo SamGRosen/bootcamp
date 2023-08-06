@@ -1096,4 +1096,4 @@ class TestMyStuff(unittest.TestCase):
 
 # Exercises
 
-
+[Colab](https://colab.research.google.com/drive/142X1rjJirmiZUR-UtbEMYp8JrUcOZF6_?usp=sharing)
