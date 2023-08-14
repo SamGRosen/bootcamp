@@ -58,7 +58,7 @@ Think Python (2nd Edition) [Chapter 1.5](https://greenteapress.com/thinkpython2/
 :::
 
 
-# Floats {.smaller}
+# Floats {.smallest}
 
 * Floats are numbers with a decimal. In Python 3 they are bounded above and below by $\approx \pm10^{308}$.
 * Numbers remain useful with a decimal component.
@@ -399,7 +399,7 @@ print(my_set1)
 print(my_set1 is my_set4)
 ```
 
-# Dictionaries
+# Dictionaries {.smaller}
 
 * `dict`s are great ways to map *keys* to *values*. A simple example is a histogram:
 
@@ -582,7 +582,8 @@ for letter in my_str:
   print(letter, end = "")
 
 ```
-# Functions {.smaller}
+
+# Functions {.smallerr}
 
 * Functions are an essential part of passing functionality in Python from modules or in your code. It is a good idea to split your program up into repeatable parts to help with debugging. 
 
