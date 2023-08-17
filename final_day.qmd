@@ -224,7 +224,23 @@ Deriving helpful output from the input
 * Modularity (Undirected graphs): $\max_\mu \frac{1}{2m} \sum_{i,j} \left( A_{ij} - \frac{k_i k_j}{2m}\right)\delta(\mu_i, \mu_j)$
 
 
+## Design Question 1 {.smaller}
 
+You work for Amazon and the company has noticed that the 5-star review system is flawed since two reviews may have the same number of stars, but actually have very different sentiments about the product. With all the data on Amazon users, and their reviews on products, they ask you to derive more intelligent information from reviews to assist in them suggesting high-quality products.
+
+* Clarification/Assumptions
+* Algorithms
+* Features
+* Evaluation
+
+## Design Question 2 {.smaller}
+
+You work for OpenAI (creators of ChatGPT), and need to classify lots of text data to help train the latest overhyped NLP model. They have several million documents which need to be classified to a certain type. Some types include: research paper, user review, novel, transcription.
+
+* Clarification/Assumptions
+* Algorithms
+* Features
+* Evaluation
 
 # Pipeline
 
@@ -359,6 +375,73 @@ print((np.count_nonzero(cv.best_estimator_.coef_, axis=1)))
 
 :::footer
 `IAML` [Chapter 1.3](https://users.cs.duke.edu/~cynthia/CourseNotes/CrossValidationNotes.pdf), `ESL` [Chapter 7](https://hastie.su.domains/ElemStatLearn/), `ISL` [Chapter 5.1, 6](https://www.statlearning.com/)
+:::
+
+## Aside, Regularization Strength {.smallest}
+
+::: {.panel-tabset}
+
+### Cross Validation Code
+
+```{python}
+
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import KFold
+
+log2_vals = np.arange(-10, 32)
+coef_nonzero = []
+accuracies = []
+x_axis_vals = []
+kf = KFold(n_splits=5)
+reindexed_y = np.array(y_train.to_list())
+for fold_num, (train_index, test_index) in enumerate(kf.split(X_train)):  
+  for reg_strength in log2_vals:
+    logistic = linear_model.LogisticRegression(
+      solver="liblinear", penalty="l1", C=2.0 ** reg_strength)
+    logistic.fit(X_train[train_index, :], reindexed_y[train_index])
+
+    accuracies.append(accuracy_score(logistic.predict(X_train[test_index]), reindexed_y[test_index]))
+    x_axis_vals.append(reg_strength)
+    coef_nonzero.append(np.count_nonzero(logistic.coef_, axis=1))
+
+```
+
+### Visualization
+
+```{python}
+#| echo: False
+plt.clf()
+```
+
+```{python}
+#| fig-align: center
+#| echo: false
+
+coef_nonzero = np.array(coef_nonzero)
+
+plt.subplot(211)
+
+plt.scatter(x_axis_vals, coef_nonzero[:, 0], label='Amazon', alpha=0.35)
+plt.scatter(x_axis_vals, coef_nonzero[:, 1], label='IMDB', alpha=0.35)
+plt.scatter(x_axis_vals, coef_nonzero[:, 2], label='Yelp', alpha=0.35)
+plt.ylabel('Number of non-zero coefs')
+plt.title('Regularization Strength vs Performance')
+plt.legend()
+
+plt.subplot(212)
+plt.plot(x_axis_vals, accuracies, 'ro', alpha=0.35)
+plt.xlabel('Log2 of C')
+plt.ylabel('Accuracy')
+
+
+```
+
+```{python}
+#| echo: False
+plt.show()
+
+```
+
 :::
 
 ## Examine the Fit {.smallerr}
