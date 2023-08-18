@@ -368,6 +368,7 @@ cv = GridSearchCV(logistic,
                   refit=True)
 cv.fit(X_train, y_train)
 
+print(cv.best_params_)
 print(cv.best_estimator_.coef_.shape)
 print(cv.best_estimator_.classes_)
 print((np.count_nonzero(cv.best_estimator_.coef_, axis=1)))
@@ -390,7 +391,8 @@ from sklearn.model_selection import KFold
 
 log2_vals = np.arange(-10, 32)
 coef_nonzero = []
-accuracies = []
+test_accuracies = []
+train_accuracies = []
 x_axis_vals = []
 kf = KFold(n_splits=5)
 reindexed_y = np.array(y_train.to_list())
@@ -400,7 +402,8 @@ for fold_num, (train_index, test_index) in enumerate(kf.split(X_train)):
       solver="liblinear", penalty="l1", C=2.0 ** reg_strength)
     logistic.fit(X_train[train_index, :], reindexed_y[train_index])
 
-    accuracies.append(accuracy_score(logistic.predict(X_train[test_index]), reindexed_y[test_index]))
+    test_accuracies.append(accuracy_score(logistic.predict(X_train[test_index]), reindexed_y[test_index]))
+    train_accuracies.append(accuracy_score(logistic.predict(X_train[train_index]), reindexed_y[train_index]))
     x_axis_vals.append(reg_strength)
     coef_nonzero.append(np.count_nonzero(logistic.coef_, axis=1))
 
@@ -410,7 +413,7 @@ for fold_num, (train_index, test_index) in enumerate(kf.split(X_train)):
 
 ```{python}
 #| echo: False
-plt.clf()
+_ = plt.clf()
 ```
 
 ```{python}
@@ -418,27 +421,32 @@ plt.clf()
 #| echo: false
 
 coef_nonzero = np.array(coef_nonzero)
-
-plt.subplot(211)
-
+plt.figure(figsize=(10, 6.5))
+plt.subplot(311)
 plt.scatter(x_axis_vals, coef_nonzero[:, 0], label='Amazon', alpha=0.35)
 plt.scatter(x_axis_vals, coef_nonzero[:, 1], label='IMDB', alpha=0.35)
 plt.scatter(x_axis_vals, coef_nonzero[:, 2], label='Yelp', alpha=0.35)
-plt.ylabel('Number of non-zero coefs')
+plt.ylabel('Non-zero coefs')
 plt.title('Regularization Strength vs Performance')
 plt.legend()
 
-plt.subplot(212)
-plt.plot(x_axis_vals, accuracies, 'ro', alpha=0.35)
-plt.xlabel('Log2 of C')
-plt.ylabel('Accuracy')
+plt.subplot(312)
+plt.plot(x_axis_vals, test_accuracies, 'ro', alpha=0.35)
+plt.ylabel('Accuracy (Test)')
+
+plt.subplot(313)
+plt.plot(x_axis_vals, train_accuracies, 'ro', alpha=0.35)
+plt.ylabel('Accuracy (Train)')
+
+
+_ = plt.xlabel('Log2 of C')
 
 
 ```
 
 ```{python}
 #| echo: False
-plt.show()
+_ = plt.show()
 
 ```
 
