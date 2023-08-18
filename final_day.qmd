@@ -492,7 +492,7 @@ print(reviews.loc[train_indices[uncertain_reviews]]["Cleaned"])
 * [Accuracy](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html): Simplest metric, percent correct
 * [Precision](https://en.wikipedia.org/wiki/Precision_and_recall): If I predict $x$ probability I am correct
 * [Recall](https://en.wikipedia.org/wiki/Precision_and_recall): If the truth is $x$ probability I am correct
-* [f-Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html): Geometric mean of `precision` and `recall`, great for unbalanced classes
+* [f-Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html): Harmonic mean of `precision` and `recall`, great for unbalanced classes
 
 ```{python}
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
