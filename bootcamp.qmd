@@ -53,7 +53,7 @@ format:
 -   Do not do an unpaid internship
     -   Your time is valuable
     -   It is questionable what [level of responsibility](https://www.dol.gov/agencies/whd/fact-sheets/71-flsa-internships) or commitment they will give you if they will not pay you
-    -   Do paid summer research instead (look early!)
+    -   Do a summer program at Duke instead
 
 ## Types of Interships
 
@@ -216,12 +216,12 @@ format:
 ## Case Studies {.smaller}
 
 -   If an internship will have a heavy statistics, machine learning, or creativity component, your technical interview may be a case study.
--   A case study is a very open ended scenario with a specific goal in mind.
--   It is important to ask questions about clarifications and assumptions for the problem
--   You should be clear but critical of your own solution
+-   A case study is a very open-ended scenario with a specific goal in mind.
+-   It is important to ask questions about clarifications and assumptions for the problem.
+-   You should be clear but critical of your own solution.
 -   We will do a couple examples here but will not go too in depth because...
-    -   You will learn more about the necessary technical details in your courses
-    -   We are here to focus on Python
+    -   You will learn more about the necessary technical details in your courses.
+    -   We are here to focus on Python.
 
 ## Example Case Study 1 {.smaller}
 
@@ -426,7 +426,7 @@ def all_interlocks(words):
 :::
 :::
 
-## The Python Data Structures[^3] {.smaller}
+## The Python Data Structures[^4] {.smaller}
 
 Data Structures are simply objects that store data. Depending on how data is stored, various operations will take different amounts of time. The most standard operations are:
 
@@ -435,7 +435,7 @@ Data Structures are simply objects that store data. Depending on how data is sto
 * **Insert**: Given a specific element, how long does it take to add it to the data structure?
 * **Deletion**: Given a specific element or index, how long does it take to remove it?
 
-[^3]: Data structures and algorithms are theoretical fields where the specific complexities are *usually* of what program language is being used, with many exceptions you likely do not need to concern yourself with. See the [docs](https://docs.python.org/3/tutorial/datastructures.html).
+[^4]: Data structures and algorithms are theoretical fields where the specific complexities are *usually* independent of what program language is being used, with many exceptions you likely do not need to concern yourself with. See the [docs](https://docs.python.org/3/tutorial/datastructures.html).
 
 ## List Experiments (ArrayList) {.small}
 
@@ -712,7 +712,7 @@ plt.show()
 
 ## Dictionary Experiments (HashMap) (TP App B.4) {.small}
 
-Remember, Dictionaries are just sets that associate the keys with values!
+Remember, Dictionaries are just sets that associate the keys to values!
 
 ```{python}
 #| label: dict-experiments
@@ -849,7 +849,7 @@ class LinkedList:
     if self.head is None:
       self.head = Node(value)
       self.tail = self.head
-    if self.tail is not None:
+    elif self.tail is not None:
       new_node = Node(value)
       self.tail.next_node = new_node
       self.tail = new_node

@@ -16,7 +16,7 @@ execute:
 
 ## References throughout {.smaller}
 
-If you want a more in-depth dive of this material, see these materials, but focusing on your courses is plenty sufficient.
+If you want more in-depth explanations, see these materials, but focusing on your courses is plenty sufficient.
 
 -   [An Introduction to Statistical Learning](https://www.statlearning.com/) (`ISL`) by *James et al.*: Friendlier introduction with plenty of code examples in `R` or `Python`, STA521 Textbook. [Free Online Course](https://www.dataschool.io/15-hours-of-expert-machine-learning-videos/)
 -   [The Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/) (`ESL`) by *Hastie et al.*: More theoretical introduction
@@ -255,9 +255,6 @@ import numpy as np
 import seaborn as sns
 import csv
 import sklearn
-
-# For teaching purposes
-pd.options.display.max_columns = None
 
 ```
 
@@ -644,9 +641,9 @@ See Intuition for the Algorithms of Machine Learning [Chapter 1.1](https://users
 
 -   You can have the perfect model choice for your data, but struggle to fit it!
 -   [Vanishing Gradient](https://en.wikipedia.org/wiki/Vanishing_gradient_problem) is common with Neural Networks
--   Optimization can be hard (NP-HARD to be precise) Ex: Sparse Ridge Regression
+-   Optimization can be hard (NP-HARD to be precise) Ex: Sparse Regression
 
-$$ \min_{\boldsymbol \beta} \|\mathbf y - \mathbf X\boldsymbol \beta\|^2_2 + \lambda_2 \|\boldsymbol \beta\|^2_2\text{,  subject to  }  \|\boldsymbol \beta\|_0 \leq k$$
+$$ \min_{\boldsymbol \beta} \|\mathbf y - \mathbf X\boldsymbol \beta\|^2_2 \text{,  subject to  }  \|\boldsymbol \beta\|_0 \leq k$$
 
 -  Difficulty sampling a distribution (see STA602L)
 -  [Sensitivity to initial values](https://www.naftaliharris.com/blog/visualizing-k-means-clustering/)

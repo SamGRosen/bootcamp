@@ -197,7 +197,7 @@ print("Index of z:", letter_lookup.get("z"))
 # Strings {.smaller}
 
 * Strings are sets of characters that are useful for many things.
-* Everything in python has indexing start at 0, including strings.
+* Everything in Python has indexing start at 0, including strings.
 
 ```{python}
 my_str = "hello there"
@@ -353,7 +353,7 @@ print([num1 - num2 for num1, num2 in zip(my_list, my_list2)])
 
 # Sets {.smaller}
 
-* Sets in Python operate very similarly to sets in standard mathematics. Elements must be unique, they are not in any order, and determine membership is a priority.
+* Sets in Python operate very similarly to sets in standard mathematics. Elements must be unique, they are not in any order, and determining membership is a priority.
 
 ```{python}
 my_set = {"a", "b", 1, 2}
@@ -404,7 +404,7 @@ print(my_set1 is my_set4)
 * `dict`s are great ways to map *keys* to *values*. A simple example is a histogram:
 
 ```{python}
-my_str = "Welcome to duke!"
+my_str = "Welcome to Duke!"
 
 my_dict = {}
 for character in my_str:
@@ -438,7 +438,7 @@ print(my_dict)
 * `.get`: Get a value from a dictionary but specify a default
 
 ```{python}
-my_str = "Welcome to duke!"
+my_str = "Welcome to Duke!"
 
 my_dict = {}
 for character in my_str:
@@ -785,7 +785,7 @@ def my_complicated_function(some_matrix):
 
 * One way to read input and write output for a program is by writing to a file. This is generally a good idea if you might want to save the results for later.
 
-```{r}
+```{python}
 #| eval: False
 # Writing files, use the mode argument
 # Careful! This will delete the file if it is present
@@ -1037,6 +1037,7 @@ Full script [here](https://gist.github.com/SamGRosen/49d3ae2458083c4b975246ddd06
 
 ## Libraries {.smaller}
 
+*  [numpy, pandas](https://faculty.washington.edu/otoomet/machinelearning-py/numpy-and-pandas.html): Common libraries for data processing
 *  [django](https://www.djangoproject.com/): Framework for building websites via full-stack development
 *  [csv](https://docs.python.org/3/library/datetime.html): Built-in library for handling csv files
 *  [SQLAlchemy](https://www.sqlalchemy.org/): Extensive database support
@@ -1045,11 +1046,10 @@ Full script [here](https://gist.github.com/SamGRosen/49d3ae2458083c4b975246ddd06
 *  [six](https://pypi.org/project/six/): Python 2 and 3 compatibility
 *  [Polars](https://www.pola.rs/): Pandas alternative
 *  [BeautifulSoup](https://crummy.com/software/BeautifulSoup/bs4/doc/): Parse HTML input
-*  [Numba](https://numba.pydata.org/): Speed up python
 *  [pygame](https://www.pygame.org/news): Game development
 *  [nltk](https://www.nltk.org/): Natural Language Processing
 *  [PyTorch](https://pytorch.org/), [TensorFlow](https://www.tensorflow.org/): Neural Networks 🤮 
-*  Many, many more... (such as the ones that will be covered in the coming days)
+*  Many, many more...
 
 ## New Stuff {.smaller}
 
