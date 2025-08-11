@@ -37,6 +37,7 @@ format:
     -   Start with your interests, then go to job boards
     -   It is hard to fake interest in a field unless you are an actor
     -   Ask questions about the job and show you are happy to learn
+-   Speak to the 2nd year students
 
 ## My Personal Advice[^2] for Internships {.smaller}
 
@@ -752,26 +753,45 @@ plt.show()
 
 ## Dictionary Search {.small}
 
+::: columns
+::: {.column width="45%"}
 ```{python}
 #| echo: true
-
 search_times = []
+search_times2 = []
 
 for dict_ in my_dicts:
-  search_times.append(timeit.timeit(lambda: 1000 in dict_, number=TRIALS))
-
+  search_times.append(
+    timeit.timeit(
+      lambda: "1000" in dict_, 
+    number=TRIALS))
+  search_times2.append(
+    timeit.timeit(
+      lambda: "1000" in dict_.keys(),
+    number=TRIALS))
 ```
+:::
+
+
+::: {.column width="55%"}
 
 ```{python}
 #| fig-align: center
 
-plt.figure(32)
+plt.figure(3)
+plt.subplot(211)
 plt.plot(SIZES, search_times, 'ro')
-
 plt.ylabel("Time to Search")
+
+plt.subplot(212)
+plt.plot(SIZES, search_times2, 'ro')
+
+plt.ylabel("Time to Search 2")
 plt.xlabel("Dictionary Size")
 plt.show()
 ```
+:::
+:::
 
 ## Dictionary Insert {.small}
 
