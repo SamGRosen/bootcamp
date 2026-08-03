@@ -56,7 +56,7 @@ format:
     -   It is questionable what [level of responsibility](https://www.dol.gov/agencies/whd/fact-sheets/71-flsa-internships) or commitment they will give you if they will not pay you
     -   Do a summer program at Duke instead
 
-## Types of Interships
+## Types of Interships (Before LLMs)
 
 ![](images/internship_chart.png)
 
@@ -241,6 +241,33 @@ An online retailer has about 10 million products in their catalog. However, they
 -   Add a report button to products, reward users for finding a duplicate
 
 ## Example Case Study 2 {.smaller}
+
+A payment processor wants to examine bank statements and determine if a payment is recurring. The bank statements come from thousands of different banks.
+
+#### Questions / Assumptions
+
+-   Is this supervised or unsupervised?
+-   What is the penalty for incorrect classification?
+
+#### Some ideas
+
+-   Using bag-of-words on any text label from the statement.
+-   Engineering a feature to measure weekly, biweekly, etc.
+
+## Example Case Study 3 {.smaller}
+
+An order book lists all the current offers to buy and sell a stock, with information including time, size of order, price per stock, and exchange information. Order book entries are anonymous. Given an order book for a stock for an entire day, how might you identify which orders belong to which traders throughout the day?
+
+#### Questions / Assumptions
+
+-   What stock is it? Could I use access to auxiliary data (price of another stock during the day)?
+-   Are the key traders to identify sophisticated?
+
+#### Some ideas
+
+-   If stock is related to a commodity, such as oil, check to see which orders correlate with the related prices.
+
+## Example Case Study 4 {.smaller}
 
 A fast food restaurant wants to determine which factors lead to the longest wait times. You have access to a years worth of high quality camera footage in their restaurant from many angles. How would you solve this problem?
 

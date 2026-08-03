@@ -6,3 +6,6 @@
 /.quarto/
 
 .DS_Store
+
+**/*.quarto_ipynb
+**/*.quarto_ipynb_1
